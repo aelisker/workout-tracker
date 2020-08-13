@@ -1,6 +1,8 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+  scalar Date
+
   type WorkoutCategory {
     _id: ID
     name: String
@@ -21,7 +23,7 @@ const typeDefs = gql`
   type WorkoutRoutine {
     _id: ID
     # need to figure out how to add Date as type
-    workoutDate: Int
+    workoutDate: Date
     exercises: [IndividualExercise]
   }
 
