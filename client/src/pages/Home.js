@@ -1,23 +1,85 @@
-import React from "react";
-import logo from '../logo.svg';
+import React from 'react';
 
-const Home = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Edit <code>src/App.js</code> and save to reload.</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn react
-        </a>
-      </header>
-    </div>
-  );
-};
+function Home(props) {
 
-export default Home;
+    const {
+
+      setContactSelected
+    } = props;
+
+    return (
+        <header className="flex-row px-1 header-stylin">
+        <div className = "row ">
+        <div className = "column ">
+        <h3>
+          <div data-testid="link" href="/"> Strength Training
+          </div>
+        </h3>
+        <h4>
+          <a data-testid="link" href="/"> Curls
+          </a>
+        </h4>
+        <h4>
+          <a data-testid="link" href="/"> Bench Press
+          </a>
+        </h4>
+        <h4>
+          <a data-testid="link" href="/"> Flies
+          </a>
+        </h4>
+        <h4>
+          <a data-testid="link" href="/"> Squats
+          </a>
+        </h4>
+        <h4>
+          <a data-testid="link" href="/"> Leg Extensions
+          </a>
+        </h4>
+        <h4>
+          <a data-testid="link" href="/"> Push-ups
+          </a>
+        </h4>
+        <h4>
+          <a data-testid="link" href="/"> Chin-ups
+          </a>
+        </h4>
+        <h4>
+          <a data-testid="link" href="/"> Sit-ups
+          </a>
+        </h4>
+        </div>
+        <div className="column">
+
+
+
+
+        <h3>
+          <div data-testid="link" href="/"> Aerobic Exercise
+          </div>
+        </h3>
+        <h4>
+          <a data-testid="link" href="/"> Running
+          </a>
+        </h4>
+        <h4>
+          <a data-testid="link" href="/"> Walking
+          </a>
+        </h4>
+        <h4>
+          <a data-testid="link" href="/"> Swimming
+          </a>
+        </h4>
+        <h4>
+          <a data-testid="link" href="/"> Biking
+          </a>
+        </h4>
+
+       
+        </div>
+        </div>
+
+          </header>
+    );
+    }
+
+    export default Home;
