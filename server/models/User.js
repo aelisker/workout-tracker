@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const WorkoutRoutine = require('./WorkoutRoutine');
 
 const userSchema = new Schema({
-  name: {
+  username: {
     type: String,
     required: true,
     trim: true
