@@ -25,8 +25,12 @@ const resolvers = {
   }),
 
   Query: {
-    user: async (parent, args, context) => {
-      return await User.find();
+    user: async () => {
+      return await User.find({});
+    },
+
+    exercises: async () => {
+      return await IndividualExercise.find({});
     }
   },
 
