@@ -30,15 +30,74 @@ const resolvers = {
     },
 
     exercises: async () => {
-      return await IndividualExercise.find({});
+      return await IndividualExercise.find({}).populate('workoutCategory');
     },
 
     exercise: async (parent, {_id}) => {
-      return await IndividualExercise.findById(_id);
+      return await IndividualExercise.findById(_id).populate('workoutCategory');
     }
   },
 
   Mutation: {
+    // saveRoutine: async (parent, args, context) => {
+    //   if (context.user) {
+    //     const workout  = await IndividualExercise.create([args.exercises]).populate('workoutCategory');
+    //     const routine = await WorkoutRoutine.create(workout).populate('exercises');
+    //     const user = await User.findByIdAndUpdate(context.user._id, { $addToSet: { workoutRoutine: routine }});
+
+    //     return user;
+    //   }
+    //   throw new AuthenticationError('Not logged in');
+    // },
+
+    saveRoutine: async (parent, args, context) => {
+      // if (context.user) {
+        const workoutObj = new IndividualExercise({
+          name: "Bench Press",
+          description: "Use a closed grip with a barbell to press upward from your chest.",
+          videoLink: "https://www.youtube.com/watch?v=rxD321l2svE",
+          time: null,
+          trackTime: false,
+          distance: null,
+          trackDistance: false,
+          weight: 100,
+          trackWeight: true,
+          reps: 10,
+          trackReps: true,
+          workoutCategory: {
+            _id: "5f3845de3dc4d77e880bfdf4",
+            name: "Chest"
+            }
+          })
+        const workout  = await IndividualExercise.create(workoutObj
+        //   {
+        // name: "Bench Press",
+        // description: "Use a closed grip with a barbell to press upward from your chest.",
+        // videoLink: "https://www.youtube.com/watch?v=rxD321l2svE",
+        // time: null,
+        // trackTime: false,
+        // distance: null,
+        // trackDistance: false,
+        // weight: 100,
+        // trackWeight: true,
+        // reps: 10,
+        // trackReps: true,
+        // workoutCategory: {
+        //   _id: "5f3845de3dc4d77e880bfdf4",
+        //   name: "Chest"
+        //   }
+        // }
+        )
+        // .populate('workoutCategory');
+        const routine = await WorkoutRoutine.create(workout)
+        // .populate('exercises');
+        const user = await User.findByIdAndUpdate("5f3845de3dc4d77e880bfdfa", { $addToSet: { workoutRoutine: routine }});
+
+        return user;
+      // }
+      // throw new AuthenticationError('Not logged in');
+    },
+
     addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);

@@ -6,6 +6,8 @@ import { QUERY_ALL_EXERCISES } from '../../utils/queries';
 
 import spinner from "../../assets/spinner.gif"
 
+
+
 function ExerciseList() {
   const { loading, data } = useQuery(QUERY_ALL_EXERCISES);
 

@@ -34,6 +34,9 @@ function Detail() {
           <p>
             {currentExercise.description}
           </p>
+          {/* <p>
+            {currentExercise.workoutCategory}
+          </p> */}
         </div>
       ) : null}
       {
