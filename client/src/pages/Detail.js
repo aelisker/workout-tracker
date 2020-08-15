@@ -12,14 +12,14 @@ function Detail() {
     variables: { _id: id }
   });
   const exercise = data?.exercise || [];
-  console.log(exercise);
 
   useEffect(() => {
-    setCurrentExercise(exercise);
+    setCurrentExercise(exercise, exercise.workoutCategory);
   }, [exercise, id]);
 
 
-  console.log(currentExercise)
+  console.log('currentExercise', currentExercise)
+  console.log('currentExercise.workoutCategory', currentExercise.workoutCategory);
 
   return (
     <>
@@ -34,9 +34,9 @@ function Detail() {
           <p>
             {currentExercise.description}
           </p>
-          {/* <p>
-            {currentExercise.workoutCategory}
-          </p> */}
+          <p>
+            {currentExercise.workoutCategory ? currentExercise.workoutCategory.name : null}
+          </p>
         </div>
       ) : null}
       {

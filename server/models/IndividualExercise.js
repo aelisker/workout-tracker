@@ -15,35 +15,34 @@ const individualExerciseSchema = new Schema({
     type: String,
     trim: true 
   },
-  reps: {
-    type: Number,
-    min: 0
-  },
+  // reps: {
+  //   type: Number,
+  //   min: 0
+  // },
   trackReps: {
     type: Boolean,
     default: true
   },
-  // since these are not required, will try to figure way to allow user to choose weight time or distance
-  weight: {
-    type: Number,
-    min: 0
-  },
+  // weight: {
+  //   type: Number,
+  //   min: 0
+  // },
   trackWeight: {
     type: Boolean,
     default: false
   },
-  distance: {
-    type: Number,
-    min: 0
-  },
+  // distance: {
+  //   type: Number,
+  //   min: 0
+  // },
   trackDistance: {
     type: Boolean,
     default: false
   },
-  time: {
-    type: Number,
-    min: 0
-  },
+  // time: {
+  //   type: Number,
+  //   min: 0
+  // },
   trackTime: {
     type: Boolean,
     default: false

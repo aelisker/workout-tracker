@@ -52,46 +52,34 @@ const resolvers = {
 
     saveRoutine: async (parent, args, context) => {
       // if (context.user) {
-        const workoutObj = new IndividualExercise({
-          name: "Bench Press",
-          description: "Use a closed grip with a barbell to press upward from your chest.",
-          videoLink: "https://www.youtube.com/watch?v=rxD321l2svE",
-          time: null,
-          trackTime: false,
-          distance: null,
-          trackDistance: false,
-          weight: 100,
-          trackWeight: true,
-          reps: 10,
-          trackReps: true,
-          workoutCategory: {
-            _id: "5f3845de3dc4d77e880bfdf4",
-            name: "Chest"
-            }
-          })
-        const workout  = await IndividualExercise.create(workoutObj
-        //   {
-        // name: "Bench Press",
-        // description: "Use a closed grip with a barbell to press upward from your chest.",
-        // videoLink: "https://www.youtube.com/watch?v=rxD321l2svE",
-        // time: null,
-        // trackTime: false,
-        // distance: null,
-        // trackDistance: false,
-        // weight: 100,
-        // trackWeight: true,
-        // reps: 10,
-        // trackReps: true,
-        // workoutCategory: {
-        //   _id: "5f3845de3dc4d77e880bfdf4",
-        //   name: "Chest"
-        //   }
+        // const isWorkout = await WorkoutRoutine.findById({_id: args.workoutId});
+        // if (!isWorkout) {
+
         // }
+        const workout  = await WorkoutRoutine.create(
+          { exercises: [{
+              name: "Bench Press",
+              description: "Use a closed grip with a barbell to press upward from your chest.",
+              videoLink: "https://www.youtube.com/watch?v=rxD321l2svE",
+              time: null,
+              trackTime: false,
+              distance: null,
+              trackDistance: false,
+              weight: 100,
+              trackWeight: true,
+              reps: 10,
+              trackReps: true,
+              workoutCategory: {
+                _id: "5f3845de3dc4d77e880bfdf4",
+                name: "Chest"
+                }
+            }]
+          }
         )
         // .populate('workoutCategory');
-        const routine = await WorkoutRoutine.create(workout)
+        // const routine = await WorkoutRoutine.create(workout)
         // .populate('exercises');
-        const user = await User.findByIdAndUpdate("5f3845de3dc4d77e880bfdfa", { $addToSet: { workoutRoutine: routine }});
+        const user = await User.findByIdAndUpdate("5f3869ff7083d66b5c736dd6", { $push: { workouts: workout }}, {new: true});
 
         return user;
       // }

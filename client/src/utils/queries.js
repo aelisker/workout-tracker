@@ -32,13 +32,9 @@ export const QUERY_EXERCISE = gql`
       name
       description
       videoLink
-      reps
       trackReps
-      weight
       trackWeight
-      distance
       trackDistance
-      time
       trackTime
       workoutCategory {
         _id
@@ -55,13 +51,9 @@ export const QUERY_ALL_EXERCISES = gql`
         name
         description
         videoLink
-        reps
         trackReps
-        weight
         trackWeight
-        distance
         trackDistance
-        time
         trackTime
         workoutCategory {
           _id

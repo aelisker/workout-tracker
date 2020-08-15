@@ -13,6 +13,18 @@ const typeDefs = gql`
     name: String
     description: String
     videoLink: String
+    trackReps: Boolean
+    trackWeight: Boolean
+    trackDistance: Boolean
+    trackTime: Boolean
+    workoutCategory: WorkoutCategory
+  }
+
+  type RoutineExercise {
+    _id: ID
+    name: String
+    description: String
+    videoLink: String
     reps: Int
     trackReps: Boolean
     weight: Float
@@ -28,7 +40,7 @@ const typeDefs = gql`
     _id: ID
     # need to figure out how to add Date as type
     workoutDate: Date
-    exercises: [IndividualExercise]
+    exercises: [RoutineExercise]
   }
 
   type User {
