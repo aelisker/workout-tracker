@@ -17,19 +17,36 @@ const individualExerciseSchema = new Schema({
   },
   reps: {
     type: Number,
+    min: 0
+  },
+  trackReps: {
+    type: Boolean,
+    default: true
   },
   // since these are not required, will try to figure way to allow user to choose weight time or distance
   weight: {
     type: Number,
     min: 0
   },
+  trackWeight: {
+    type: Boolean,
+    default: false
+  },
   distance: {
     type: Number,
     min: 0
   },
+  trackDistance: {
+    type: Boolean,
+    default: false
+  },
   time: {
     type: Number,
     min: 0
+  },
+  trackTime: {
+    type: Boolean,
+    default: false
   },
   workoutCategory: {
     type: Schema.Types.ObjectId,

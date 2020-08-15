@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 function Home(props) {
 
@@ -6,6 +6,20 @@ function Home(props) {
 
       setContactSelected
     } = props;
+
+    const [currentWorkout, setCurrentWorkout] = useState("");
+
+    const [workout] = useState([
+      {
+      name: 'WorkoutSets'
+      },
+      {
+        name: 'WorkoutDistance'
+      },
+      {
+        name: 'WorkoutReps'
+      }
+    ])
 
     return (
         <header className="flex-row px-1 header-stylin">
@@ -16,7 +30,9 @@ function Home(props) {
           </div>
         </h3>
         <h4>
-          <a data-testid="link" href="/"> Curls
+          <a 
+          onClick={() => setCurrentWorkout("Curls")}
+          data-testid="link" href="/curls"> Curls
           </a>
         </h4>
         <h4>

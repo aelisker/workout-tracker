@@ -4,7 +4,7 @@ export const QUERY_USER = gql`
 {
   user {
     _id
-    name
+    username
     email
     workouts {
       _id
@@ -23,4 +23,23 @@ export const QUERY_USER = gql`
     }
   }
 }
+`;
+
+export const QUERY_ALL_EXERCISES = gql`
+  {
+    exercises {
+      _id
+        name
+        description
+        videoLink
+        reps
+        weight
+        distance
+        time
+        workoutCategory {
+          _id
+          name
+        }
+    }
+  }
 `;

@@ -1,15 +1,16 @@
 import React from 'react';
 import Auth from '../../utils/auth';
 
-function Header(props) {
+function Header() {
 
-    const {
-
-      setContactSelected
-    } = props;
+    // const {
+    //   currentWorkout,
+    //   setCurrentWorkout,
+    //   setContactSelected
+    // } = props;
 
     return (
-        <header className="flex-row px-1 header-stylin red ">
+        <header className="flex-row px-1 header-stylin header-color ">
         <div>
         <h1>
           <a  href="/" className="d-flex justify-content-center">

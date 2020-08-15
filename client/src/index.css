@@ -23,10 +23,14 @@ code {
   height: 300px
 }
 
-.red {
-  background-color: red;
+.header-color {
+  background-color: rgb(90, 81, 134);
 }
 
 .login-size {
   font-size: 20px;
+}
+
+.single-exercise {
+  font-size: 25px;
 }
