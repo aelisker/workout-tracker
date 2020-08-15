@@ -14,9 +14,13 @@ const typeDefs = gql`
     description: String
     videoLink: String
     reps: Int
+    trackReps: Boolean
     weight: Float
+    trackWeight: Boolean
     distance: Float
+    trackDistance: Boolean
     time: Float
+    trackTime: Boolean
     workoutCategory: WorkoutCategory
   }
 
@@ -43,6 +47,7 @@ const typeDefs = gql`
   type Query {
     user: [User]
     exercises: [IndividualExercise]
+    exercise(_id: ID!): IndividualExercise
   }
 
   type Mutation {

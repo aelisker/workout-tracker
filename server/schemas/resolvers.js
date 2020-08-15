@@ -31,6 +31,10 @@ const resolvers = {
 
     exercises: async () => {
       return await IndividualExercise.find({});
+    },
+
+    exercise: async (parent, {_id}) => {
+      return await IndividualExercise.findById(_id);
     }
   },
 

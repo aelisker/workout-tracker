@@ -25,6 +25,29 @@ export const QUERY_USER = gql`
 }
 `;
 
+export const QUERY_EXERCISE = gql`
+  query exercise($_id: ID!) {
+    exercise(_id: $_id) {
+      _id
+      name
+      description
+      videoLink
+      reps
+      trackReps
+      weight
+      trackWeight
+      distance
+      trackDistance
+      time
+      trackTime
+      workoutCategory {
+        _id
+        name
+      }
+    }
+  }
+`;
+
 export const QUERY_ALL_EXERCISES = gql`
   {
     exercises {
@@ -33,9 +56,13 @@ export const QUERY_ALL_EXERCISES = gql`
         description
         videoLink
         reps
+        trackReps
         weight
+        trackWeight
         distance
+        trackDistance
         time
+        trackTime
         workoutCategory {
           _id
           name

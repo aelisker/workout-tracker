@@ -9,6 +9,8 @@ import Header from './components/Header';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import WorkoutSets from './pages/WorkoutSets';
+import Detail from './pages/Detail';
+import ExerciseList from './components/ExerciseList';
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -37,6 +39,9 @@ function App() {
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/curls" component={WorkoutSets} />
+              <Route exact path="/list" component={ExerciseList} />
+              <Route exact path="/exercise/:id" component={Detail} />
+
               <Route component={NoMatch} />
             </Switch>
           {/* </StoreProvider> */}

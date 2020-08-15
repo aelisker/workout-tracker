@@ -2,100 +2,100 @@ import React, { useEffect, useState } from 'react';
 
 function Home(props) {
 
-    const {
+  const {
 
-      setContactSelected
-    } = props;
+    setContactSelected
+  } = props;
 
-    const [currentWorkout, setCurrentWorkout] = useState("");
+  const [currentWorkout, setCurrentWorkout] = useState("");
 
-    const [workout] = useState([
-      {
+  const [workout] = useState([
+    {
       name: 'WorkoutSets'
-      },
-      {
-        name: 'WorkoutDistance'
-      },
-      {
-        name: 'WorkoutReps'
-      }
-    ])
+    },
+    {
+      name: 'WorkoutDistance'
+    },
+    {
+      name: 'WorkoutReps'
+    }
+  ])
 
-    return (
-        <header className="flex-row px-1 header-stylin">
-        <div className = "row ">
-        <div className = "column ">
-        <h3>
-          <div data-testid="link" href="/"> Strength Training
+  return (
+    <header className="flex-row px-1 header-stylin">
+      <div className="row ">
+        <div className="column ">
+          <h3>
+            <div data-testid="link" href="/"> Strength Training
           </div>
-        </h3>
-        <h4>
-          <a 
-          onClick={() => setCurrentWorkout("Curls")}
-          data-testid="link" href="/curls"> Curls
+          </h3>
+          <h4>
+            <a
+              onClick={() => setCurrentWorkout("Curls")}
+              data-testid="link" href="/curls"> Curls
           </a>
-        </h4>
-        <h4>
-          <a data-testid="link" href="/"> Bench Press
+          </h4>
+          <h4>
+            <a data-testid="link" href="/"> Bench Press
           </a>
-        </h4>
-        <h4>
-          <a data-testid="link" href="/"> Flies
+          </h4>
+          <h4>
+            <a data-testid="link" href="/"> Flies
           </a>
-        </h4>
-        <h4>
-          <a data-testid="link" href="/"> Squats
+          </h4>
+          <h4>
+            <a data-testid="link" href="/"> Squats
           </a>
-        </h4>
-        <h4>
-          <a data-testid="link" href="/"> Leg Extensions
+          </h4>
+          <h4>
+            <a data-testid="link" href="/"> Leg Extensions
           </a>
-        </h4>
-        <h4>
-          <a data-testid="link" href="/"> Push-ups
+          </h4>
+          <h4>
+            <a data-testid="link" href="/"> Push-ups
           </a>
-        </h4>
-        <h4>
-          <a data-testid="link" href="/"> Chin-ups
+          </h4>
+          <h4>
+            <a data-testid="link" href="/"> Chin-ups
           </a>
-        </h4>
-        <h4>
-          <a data-testid="link" href="/"> Sit-ups
+          </h4>
+          <h4>
+            <a data-testid="link" href="/"> Sit-ups
           </a>
-        </h4>
+          </h4>
         </div>
         <div className="column">
 
 
 
 
-        <h3>
-          <div data-testid="link" href="/"> Aerobic Exercise
+          <h3>
+            <div data-testid="link" href="/"> Aerobic Exercise
           </div>
-        </h3>
-        <h4>
-          <a data-testid="link" href="/"> Running
+          </h3>
+          <h4>
+            <a data-testid="link" href="/"> Running
           </a>
-        </h4>
-        <h4>
-          <a data-testid="link" href="/"> Walking
+          </h4>
+          <h4>
+            <a data-testid="link" href="/"> Walking
           </a>
-        </h4>
-        <h4>
-          <a data-testid="link" href="/"> Swimming
+          </h4>
+          <h4>
+            <a data-testid="link" href="/"> Swimming
           </a>
-        </h4>
-        <h4>
-          <a data-testid="link" href="/"> Biking
+          </h4>
+          <h4>
+            <a data-testid="link" href="/"> Biking
           </a>
-        </h4>
+          </h4>
 
-       
+
         </div>
-        </div>
+      </div>
 
-          </header>
-    );
-    }
+    </header>
+  );
+}
 
-    export default Home;
+export default Home;
