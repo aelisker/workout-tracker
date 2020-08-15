@@ -14,7 +14,23 @@
 //       return state;
 //   }
 // };
-
+switch (action.type) {
+    case UPDATE_WORKOUT:
+        return {
+            ...state,
+            workouts: [...action.products]
+        };
+    case UPDATE_EXERCISES:
+        return {
+            ...state,
+            exercises: [...action.exercises]
+        };
+    case ADD_EXERCISES:
+        return {
+            ...state,
+            exercises: [...state.workouts, action.workouts]
+        }
+}
 // export function useWorkoutReducer(initialState) {
 //   return useReducer(reducer, initialState);
 // };
