@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const { Schema } = mongoose;
 
@@ -56,8 +57,10 @@ const routineExerciseSchema = new Schema({
 
 const workoutRoutineSchema = new Schema({
   workoutDate: {
+    // type: String,
+    // default: moment(Date.now()).format("MMM Do YY"),
     type: Date,
-    default: Date.now,
+    default: Date.now(),
     required: true
   },
   exercises: [routineExerciseSchema]

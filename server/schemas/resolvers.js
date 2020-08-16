@@ -4,6 +4,7 @@ const { User, WorkoutCategory, WorkoutRoutine, IndividualExercise } = require('.
 
 const { GraphQLScalarType } = require('graphql');
 const { Kind } = require('graphql/language');
+const moment = require('moment');
 
 const resolvers = {
   // Date information comes from https://www.apollographql.com/docs/apollo-server/schema/scalars-enums/
@@ -39,49 +40,73 @@ const resolvers = {
   },
 
   Mutation: {
-    // saveRoutine: async (parent, args, context) => {
-    //   if (context.user) {
-    //     const workout  = await IndividualExercise.create([args.exercises]).populate('workoutCategory');
-    //     const routine = await WorkoutRoutine.create(workout).populate('exercises');
-    //     const user = await User.findByIdAndUpdate(context.user._id, { $addToSet: { workoutRoutine: routine }});
-
-    //     return user;
-    //   }
-    //   throw new AuthenticationError('Not logged in');
-    // },
-
     saveRoutine: async (parent, args, context) => {
       // if (context.user) {
-        // const isWorkout = await WorkoutRoutine.findById({_id: args.workoutId});
-        // if (!isWorkout) {
+        // const currentDay = moment(Date.now()).format("MMM Do YY");
 
-        // }
-        const workout  = await WorkoutRoutine.create(
-          { exercises: [{
-              name: "Bench Press",
-              description: "Use a closed grip with a barbell to press upward from your chest.",
-              videoLink: "https://www.youtube.com/watch?v=rxD321l2svE",
-              time: null,
-              trackTime: false,
-              distance: null,
-              trackDistance: false,
-              weight: 100,
-              trackWeight: true,
-              reps: 10,
-              trackReps: true,
-              workoutCategory: {
-                _id: "5f3845de3dc4d77e880bfdf4",
-                name: "Chest"
+        const workoutId = '5f3897a53cfb9e35988f22b8';
+        const userId = '5f38955cf9dade31282a88f6';
+
+        const isWorkout = await WorkoutRoutine.findById(workoutId);
+        console.log(isWorkout);
+        // const isWorkout = await WorkoutRoutine.findById({_id: args.workoutId});
+        if (isWorkout !== null) {
+          const workout  = await WorkoutRoutine.findOneAndUpdate(
+            { _id: workoutId }, 
+            { $pullAll: [{ workouts: { _id: workoutId }}] , $addToSet: 
+              { exercises: {
+                  name: "Plank",
+                  description: "Lay face down with elbows holding you up. Keep core engaged.",
+                  videoLink: "https://www.youtube.com/watch?v=rxD321l2svE",
+                  time: 90,
+                  trackTime: true,
+                  distance: null,
+                  trackDistance: false,
+                  weight: null,
+                  trackWeight: false,
+                  reps: null,
+                  trackReps: false,
+                  workoutCategory: {
+                    _id: "5f387b95c603640cbc8e0e65",
+                    name: "Core"
+                    }
                 }
-            }]
-          }
-        )
+              }
+            },
+            { new: true }
+          );
+          const user = await User.findOneAndUpdate({ _id: userId }, { $pullAll: [{ workouts: { _id: workoutId }}], $addToSet: { workouts: workout }}, {new: true});
+          return user;
+        } else if (isWorkout === null) {
+          const workout  = await WorkoutRoutine.create(
+            { exercises: {
+                name: "Bench Press",
+                description: "Use a closed grip with a barbell to press upward from your chest.",
+                videoLink: "https://www.youtube.com/watch?v=rxD321l2svE",
+                time: null,
+                trackTime: false,
+                distance: null,
+                trackDistance: false,
+                weight: 100,
+                trackWeight: true,
+                reps: 10,
+                trackReps: true,
+                workoutCategory: {
+                  _id: "5f387b95c603640cbc8e0e63",
+                  name: "Chest"
+                  }
+              }
+            }
+          );
+          const user = await User.findOneAndUpdate({ _id: userId }, { $addToSet: { workouts: workout }}, {new: true});
+          return user;
+        }
         // .populate('workoutCategory');
         // const routine = await WorkoutRoutine.create(workout)
         // .populate('exercises');
-        const user = await User.findByIdAndUpdate("5f3869ff7083d66b5c736dd6", { $push: { workouts: workout }}, {new: true});
+        // const user = await User.findByIdAndUpdate("5f3875cb0bf1e60f78c3a08e", { $push: { workouts: workout }}, {new: true});
 
-        return user;
+        // return user;
       // }
       // throw new AuthenticationError('Not logged in');
     },
