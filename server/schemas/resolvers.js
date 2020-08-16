@@ -44,17 +44,18 @@ const resolvers = {
       // if (context.user) {
         // const currentDay = moment(Date.now()).format("MMM Do YY");
 
-        const workoutId = '5f3897a53cfb9e35988f22b8';
-        const userId = '5f38955cf9dade31282a88f6';
+        const workoutId = '5f3998ae358d0a82401181a3';
+        const userId = '5f3997dc11102376bc20ab3e';
 
         const isWorkout = await WorkoutRoutine.findById(workoutId);
-        console.log(isWorkout);
+        console.log('isWorkout', isWorkout);
         // const isWorkout = await WorkoutRoutine.findById({_id: args.workoutId});
         if (isWorkout !== null) {
-          const workout  = await WorkoutRoutine.findOneAndUpdate(
+          const workout  = await WorkoutRoutine.findByIdAndUpdate(
             { _id: workoutId }, 
-            { $pullAll: [{ workouts: { _id: workoutId }}] , $addToSet: 
-              { exercises: {
+            { 
+            $addToSet: 
+              { exercises: [{
                   name: "Plank",
                   description: "Lay face down with elbows holding you up. Keep core engaged.",
                   videoLink: "https://www.youtube.com/watch?v=rxD321l2svE",
@@ -70,12 +71,57 @@ const resolvers = {
                     _id: "5f387b95c603640cbc8e0e65",
                     name: "Core"
                     }
-                }
+                },
+                {
+                  name: "Plank",
+                  description: "Lay face down with elbows holding you up. Keep core engaged.",
+                  videoLink: "https://www.youtube.com/watch?v=rxD321l2svE",
+                  time: 90,
+                  trackTime: true,
+                  distance: null,
+                  trackDistance: false,
+                  weight: null,
+                  trackWeight: false,
+                  reps: null,
+                  trackReps: false,
+                  workoutCategory: {
+                    _id: "5f387b95c603640cbc8e0e65",
+                    name: "Core"
+                    }
+                }]
               }
             },
-            { new: true }
+            { new: true, upsert: true }
           );
-          const user = await User.findOneAndUpdate({ _id: userId }, { $pullAll: [{ workouts: { _id: workoutId }}], $addToSet: { workouts: workout }}, {new: true});
+          console.log(workout);
+
+          const workoutRemove = await User.findByIdAndUpdate(
+            { _id: userId },
+            { $pull: { workouts: { _id: workoutId }}},
+            // { new: true }
+          );
+          
+          console.log(workoutRemove);
+          const user = await User.findByIdAndUpdate(
+            { _id: userId },
+            { $addToSet: { workouts: workout }},
+            { 
+              new: true, 
+              upsert: true }
+          );
+          // const user = await User.findByIdAndUpdate(
+          //   { _id: userId }, 
+          //   {$addToSet: { workouts: workout }},
+          //   {returnOriginal: false, overwrite: true},
+          //   function(err, res) {
+          //     if (err) {
+          //       console.log(err);
+          //     } else {
+          //       console.log(res);
+          //     }
+          //   }
+          // );
+          console.log(user);
           return user;
         } else if (isWorkout === null) {
           const workout  = await WorkoutRoutine.create(
@@ -99,6 +145,7 @@ const resolvers = {
             }
           );
           const user = await User.findOneAndUpdate({ _id: userId }, { $addToSet: { workouts: workout }}, {new: true});
+          console.log(user);
           return user;
         }
         // .populate('workoutCategory');
