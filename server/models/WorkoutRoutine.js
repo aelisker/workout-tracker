@@ -50,8 +50,7 @@ const routineExerciseSchema = new Schema({
   },
   workoutCategory: {
     type: Schema.Types.ObjectId,
-    ref: 'WorkoutCategory',
-    required: true
+    ref: 'WorkoutCategory'
   }
 });
 

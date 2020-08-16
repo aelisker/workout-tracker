@@ -8,6 +8,22 @@ const typeDefs = gql`
     name: String
   }
 
+  input exerciseInput {
+    _id: ID
+    name: String
+    description: String
+    videoLink: String
+    reps: Int
+    trackReps: Boolean
+    weight: Float
+    trackWeight: Boolean
+    distance: Float
+    trackDistance: Boolean
+    time: Float
+    trackTime: Boolean
+    # workoutCategory: String
+  }
+
   type IndividualExercise {
     _id: ID
     name: String
@@ -65,7 +81,7 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    saveRoutine(exercises: [String]): User
+    saveRoutine(input: [exerciseInput], workoutId: ID): User
   }
 `;
 
