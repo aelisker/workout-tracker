@@ -41,6 +41,7 @@ const resolvers = {
 
   Mutation: {
     saveRoutine: async (parent, args, context) => {
+      console.log(context.user);
       if (context.user) {
         const isWorkout = await WorkoutRoutine.findById(args.workoutId);
         // if workout exists, update workout
@@ -65,7 +66,8 @@ const resolvers = {
           const workout  = await WorkoutRoutine.create(
             { exercises: args.input }
           );
-          const user = await User.findOneAndUpdate(context.user._id, { $addToSet: { workouts: workout }}, {new: true});
+          console.log(context.user._id);
+          const user = await User.findByIdAndUpdate(context.user._id, { $addToSet: { workouts: workout }}, {new: true});
           return user;
         }
       } throw new AuthenticationError('Not logged in');
