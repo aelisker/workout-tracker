@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { QUERY_ALL_EXERCISES, QUERY_USER } from '../utils/queries';
+import { QUERY_ALL_EXERCISES, QUERY_USER, SAVE_EXERCISE } from '../utils/queries';
 import { Redirect, useParams } from 'react-router-dom';
 // import { mapReduce } from '../../../server/models/User';
 
@@ -24,6 +24,25 @@ import { Redirect, useParams } from 'react-router-dom';
         setWorkouts([...workouts,{time:formState.time,weight:formState.weight, reps:formState.reps}])
     }
 
+    saveWorkout(() => {
+      document.querySelector("input");
+      if (data) {
+        useState({
+          type: SAVE_EXERCISE,
+          workouts: data.workouts
+        });
+        data.workouts.forEach((workout) => {
+          idbPromise('workouts', 'put', workout)
+        });
+      } else if (!loading) {
+        idbPromise('workouts', 'get').then((workouts) => {
+          useState({
+            type: SAVE_EXERCISE,
+            workouts: workouts
+          })
+        })
+      }
+    }, [data, loading]);
 
       useEffect(() => {
         document.title = formState.sets;
@@ -101,6 +120,7 @@ import { Redirect, useParams } from 'react-router-dom';
             <button  onClick={()=>{
             forFunction()
             setCount(count+1)
+            saveWorkout()
             }}> 
                 Submit Set
             </button>

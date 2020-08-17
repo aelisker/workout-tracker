@@ -62,3 +62,14 @@ export const QUERY_ALL_EXERCISES = gql`
     }
   }
 `;
+
+export const SAVE_EXERCISE = gql`
+  mutation saveRoutine(input: [exerciseInput], workoutId: ID): User {
+    saveRoutine(input: [exerciseInput], workoutId: ID): User {
+      token
+      user {
+        _id
+      }
+    }
+  }
+`;
