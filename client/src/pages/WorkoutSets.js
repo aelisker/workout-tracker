@@ -27,7 +27,7 @@ import { Redirect, useParams } from 'react-router-dom';
     saveWorkout(() => {
       document.querySelector("input");
       if (data) {
-        useState({
+        dispatch({
           type: SAVE_EXERCISE,
           workouts: data.workouts
         });
@@ -36,13 +36,13 @@ import { Redirect, useParams } from 'react-router-dom';
         });
       } else if (!loading) {
         idbPromise('workouts', 'get').then((workouts) => {
-          useState({
+          dispatch({
             type: SAVE_EXERCISE,
             workouts: workouts
           })
         })
       }
-    }, [data, loading]);
+    }, [data, loading, dispatch]);
 
       useEffect(() => {
         document.title = formState.sets;
