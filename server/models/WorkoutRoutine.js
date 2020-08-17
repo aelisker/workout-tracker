@@ -52,6 +52,10 @@ const routineExerciseSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'WorkoutCategory'
   }
+  // individExercise: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'IndividualExercise'
+  // }
 });
 
 const workoutRoutineSchema = new Schema({
