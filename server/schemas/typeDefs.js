@@ -77,6 +77,7 @@ const typeDefs = gql`
     user: [User]
     exercises: [IndividualExercise]
     exercise(_id: ID!): IndividualExercise
+    # savedRoutines (user_id: ID, exercise_id: ID)
   }
 
   type Mutation {

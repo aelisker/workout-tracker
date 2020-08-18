@@ -67,8 +67,10 @@ const resolvers = {
             { exercises: args.input }
           );
           const user = await User.findByIdAndUpdate(context.user._id, { $addToSet: { workouts: workout }}, {new: true});
-          console.log(workout);
-          return { user, workout };
+          console.log("i am at resolver new workout")
+          console.log(workout._id);
+          var workoutIdNew = workout._id;
+          return { user, workout, workoutIdNew };
         }
       } throw new AuthenticationError('Not logged in');
     },

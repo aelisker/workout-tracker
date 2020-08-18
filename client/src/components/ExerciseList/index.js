@@ -12,13 +12,16 @@ function ExerciseList() {
   const { loading, data } = useQuery(QUERY_ALL_EXERCISES);
 
   const exercises = data?.exercises || [];
-
+  console.log("i am at exercise list")
+ console.log(exercises)
   return (
     <div className="my-2">
       <h2>Available Exercises:</h2>
       {exercises.length ? (
-        <div className="flex-row">
+        <div className="flex-row ">
             {exercises.map(exercise => (
+              <div className="row">
+                <div className="col-lg-6 col-sm-6">
                 <IndividualExercise
                   key= {exercise._id}
                   _id={exercise._id}
@@ -26,6 +29,11 @@ function ExerciseList() {
                   description={exercise.description}
                   videoLink={exercise.videoLink}
                 />
+                </div>
+                <button href ="/exercise/${exercise._id}" >
+                  Add Set
+                </button>
+                </div>
             ))}
         </div>
       ) : (
