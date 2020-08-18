@@ -82,7 +82,9 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    saveRoutine(input: [exerciseInput], name2: String, description2: String, videoLink2: String, trackReps2: Boolean, trackWeight2: Boolean, trackDistance2: Boolean, trackTime2:Boolean, workoutId: ID): User
+    saveRoutine(input: [exerciseInput], workoutId: ID): User
+    # saveRoutine(input: [exerciseInput], name2: String, description2: String, videoLink2: String, trackReps2: Boolean, trackWeight2: Boolean, trackDistance2: Boolean, trackTime2:Boolean, workoutId: ID): User
+
   }
 `;
 

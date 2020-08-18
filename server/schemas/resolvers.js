@@ -41,6 +41,7 @@ const resolvers = {
 
   Mutation: {
     saveRoutine: async (parent, args, context) => {
+      console.log('USER CONTEXT', context.user);
       if (context.user) {
         const isWorkout = await WorkoutRoutine.findById(args.workoutId);
         // if workout exists, update workout
@@ -48,13 +49,6 @@ const resolvers = {
           const workout  = await WorkoutRoutine.findByIdAndUpdate(
             { _id: args.workoutId }, 
             { $addToSet: { exercises: args.input }},
-            {name: args.name2},
-            {description: args.description2},
-            {videoLink: args.videoLink2},
-            {trackReps: args.trackReps2},
-            {trackWeight: args.trackWeight2},
-            {trackDistance: args.trackWeight2},
-            {trackTime: args.trackTime2},
             { new: true, upsert: true }
           );
           // update was creating duplicates. instead, pull existing workout with matching ID
@@ -73,7 +67,8 @@ const resolvers = {
             { exercises: args.input }
           );
           const user = await User.findByIdAndUpdate(context.user._id, { $addToSet: { workouts: workout }}, {new: true});
-          return user;
+          console.log(workout);
+          return { user, workout };
         }
       } throw new AuthenticationError('Not logged in');
     },

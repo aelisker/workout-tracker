@@ -38,7 +38,7 @@ import { Redirect, useParams } from 'react-router-dom';
     const saveTheRoutine = async event => {
       try{
        await saveRoutine({
-          variables: {  name2, description2, videoLink2, trackReps2, trackWeight2, trackDistance2, trackTime2 }
+          variables: { input: [{ name: name2, description: description2, videoLink: videoLink2, trackReps: trackReps2, trackWeight: trackWeight2, trackDistance: trackDistance2, trackTime: trackTime2 }]}
         })
       } catch (error) {
         console.log(error);
