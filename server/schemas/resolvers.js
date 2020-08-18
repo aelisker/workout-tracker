@@ -1,15 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
-<<<<<<< HEAD
-
-const resolvers = {
-  Query: {
-
-  },
-
-  Mutation: {
-
-=======
 const { User, WorkoutCategory, WorkoutRoutine, IndividualExercise } = require('../models');
 
 const { GraphQLScalarType } = require('graphql');
@@ -109,7 +99,6 @@ const resolvers = {
 
       return { token, user };
     }
->>>>>>> 7d3b9dac1db48f7f490788aca4dc2da5810b79a4
   }
 };
 

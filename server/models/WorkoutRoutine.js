@@ -1,24 +1,4 @@
 const mongoose = require('mongoose');
-<<<<<<< HEAD
-
-const { Schema } = mongoose;
-
-const workoutRoutineSchema = new Schema({
-  workoutDate: {
-    type: Date,
-    default: Date.now,
-    required: true
-  },
-  exercises: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'IndividualExercise'
-    }
-  ]
-});
-
-const WorkoutRoutine = mongoose.model('WorkoutRoutine', workoutRoutineSchema);
-=======
 const moment = require('moment');
 
 const { Schema } = mongoose;
@@ -96,6 +76,5 @@ const workoutRoutineSchema = new Schema({
 
 const WorkoutRoutine = mongoose.model('WorkoutRoutine', workoutRoutineSchema);
 // const WorkoutRoutine = mongoose.model('WorkoutRoutine', workoutRoutineSchema);
->>>>>>> 7d3b9dac1db48f7f490788aca4dc2da5810b79a4
 
 module.exports = WorkoutRoutine;

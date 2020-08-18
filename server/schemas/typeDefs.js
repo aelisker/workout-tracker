@@ -1,14 +1,6 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-<<<<<<< HEAD
-  type Query {
-
-  },
-
-  type Mutation {
-    
-=======
   scalar Date
 
   type WorkoutCategory {
@@ -93,7 +85,6 @@ const typeDefs = gql`
     saveRoutine(input: [exerciseInput], workoutId: ID): User
     # saveRoutine(input: [exerciseInput], name2: String, description2: String, videoLink2: String, trackReps2: Boolean, trackWeight2: Boolean, trackDistance2: Boolean, trackTime2:Boolean, workoutId: ID): User
 
->>>>>>> 7d3b9dac1db48f7f490788aca4dc2da5810b79a4
   }
 `;
 
