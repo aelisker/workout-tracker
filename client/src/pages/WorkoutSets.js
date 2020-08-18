@@ -35,10 +35,28 @@ import { Redirect, useParams } from 'react-router-dom';
     const trackDistance2 = exercise.trackDistance;
     const trackTime2 = exercise.trackTime;
     // const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
+    // , name2, description2, videoLink2, trackReps2, trackWeight2, trackDistance2, trackTime2
+		// "distance": 5,
+    // "time": 3000,
+
+
+    // "reps": 3000,
+ 
+    // "weight": 180,
+    //     "name": "Bench Press",
+    // "description": "test",
+    // "videoLink": "test link",
+
+    // "trackReps": true,
+
+    // "trackWeight": true,
+    // "trackDistance": false,
+    // "trackTime": false
+
     const saveTheRoutine = async event => {
       try{
        await saveRoutine({
-          variables: {  name2, description2, videoLink2, trackReps2, trackWeight2, trackDistance2, trackTime2 }
+          variables: {input:  { distance: Number(formState.distance), time: Number(formState.time), reps: Number(formState.reps), weight: Number(formState.weight), name: name2, description: description2, videoLink: videoLink2, trackReps: trackReps2, trackWeight: trackWeight2, trackDistance: trackDistance2, trackTime: trackTime2 }}
         })
       } catch (error) {
         console.log(error);
@@ -75,7 +93,7 @@ import { Redirect, useParams } from 'react-router-dom';
           <input  key="time"  className='form-input'  
                 placeholder='Number of Minutes'
                 name='time'
-                value='time'
+
                 type='number'             
                 id='time'
                 onChange={(event)=>{
@@ -97,7 +115,7 @@ import { Redirect, useParams } from 'react-router-dom';
                 placeholder='weight'
                 name='weight'
                 type='number'
-                value='weight'             
+                     
                 id='weight'
                 onChange={(event)=>{
                     const { name, value } = event.target;
@@ -118,7 +136,7 @@ import { Redirect, useParams } from 'react-router-dom';
                 placeholder='reps'
                 name='reps'
                 type='number'
-                value='reps'             
+                
                 id='reps'
                 onChange={(event)=>{
                     const { name, value } = event.target;
@@ -139,7 +157,7 @@ import { Redirect, useParams } from 'react-router-dom';
                 placeholder='Number of Miles'
                 name='distance'
                 type='number'
-                value='distance'             
+              
                 id='distance'
                 onChange={(event)=>{
                     const { name, value } = event.target;

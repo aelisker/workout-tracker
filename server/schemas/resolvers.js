@@ -44,25 +44,32 @@ const resolvers = {
       if (context.user) {
         const isWorkout = await WorkoutRoutine.findById(args.workoutId);
         // if workout exists, update workout
+        console.log(args, "on line 47")
+        // {name: args.name2},
+        //     {description: args.description2},
+        //     {videoLink: args.videoLink2},
+        //     {trackReps: args.trackReps2},
+        //     {trackWeight: args.trackWeight2},
+        //     {trackDistance: args.trackWeight2},
+        //     {trackTime: args.trackTime2},
         if (isWorkout !== null) {
           const workout  = await WorkoutRoutine.findByIdAndUpdate(
             { _id: args.workoutId }, 
             { $addToSet: { exercises: args.input }},
-            {name: args.name2},
-            {description: args.description2},
-            {videoLink: args.videoLink2},
-            {trackReps: args.trackReps2},
-            {trackWeight: args.trackWeight2},
-            {trackDistance: args.trackWeight2},
-            {trackTime: args.trackTime2},
+            // {distance: distance},
+            // {time: time},
+            // {reps: reps},
+            // {weight: weight},
             { new: true, upsert: true }
           );
           // update was creating duplicates. instead, pull existing workout with matching ID
-          await User.findByIdAndUpdate(
-            context.user._id,
-            { $pull: { workouts: { _id: args.workoutId }}},
-            // { new: true }
-          );
+
+          // await User.findByIdAndUpdate(
+          //   context.user._id,
+          //   { $pull: { workouts: { _id: args.workoutId }}},
+          //   // { new: true }
+          // );
+          
           // add updated routine to user workout array
           const user = await User.findByIdAndUpdate(context.user._id, { $addToSet: { workouts: workout }}, { new: true, upsert: true });
           return user;
