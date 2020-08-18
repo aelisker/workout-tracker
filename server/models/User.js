@@ -5,7 +5,11 @@ const bcrypt = require('bcrypt');
 const WorkoutRoutine = require('./WorkoutRoutine');
 
 const userSchema = new Schema({
+<<<<<<< HEAD
   name: {
+=======
+  username: {
+>>>>>>> 7d3b9dac1db48f7f490788aca4dc2da5810b79a4
     type: String,
     required: true,
     trim: true

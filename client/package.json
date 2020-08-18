@@ -2,12 +2,30 @@
   "name": "24-workout-project",
   "version": "0.1.0",
   "private": true,
+<<<<<<< HEAD
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+=======
+  "proxy": "http://localhost:3001/",
+  "dependencies": {
+    "@apollo/react-hooks": "^3.1.3",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "apollo-boost": "^0.4.7",
+    "apollo-link-context": "^1.0.20",
+    "bootstrap": "^4.5.2",
+    "graphql": "^14.6.0",
+    "graphql-tag": "^2.10.3",
+    "jwt-decode": "^2.2.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.1.2",
+>>>>>>> 7d3b9dac1db48f7f490788aca4dc2da5810b79a4
     "react-scripts": "3.4.2"
   },
   "scripts": {

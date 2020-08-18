@@ -15,6 +15,7 @@ const individualExerciseSchema = new Schema({
     type: String,
     trim: true 
   },
+<<<<<<< HEAD
   reps: {
     type: Number,
   },
@@ -35,6 +36,43 @@ const individualExerciseSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'WorkoutCategory',
     required: true
+=======
+  // reps: {
+  //   type: Number,
+  //   min: 0
+  // },
+  trackReps: {
+    type: Boolean,
+    default: true
+  },
+  // weight: {
+  //   type: Number,
+  //   min: 0
+  // },
+  trackWeight: {
+    type: Boolean,
+    default: false
+  },
+  // distance: {
+  //   type: Number,
+  //   min: 0
+  // },
+  trackDistance: {
+    type: Boolean,
+    default: false
+  },
+  // time: {
+  //   type: Number,
+  //   min: 0
+  // },
+  trackTime: {
+    type: Boolean,
+    default: false
+  },
+  workoutCategory: {
+    type: Schema.Types.ObjectId,
+    ref: 'WorkoutCategory'
+>>>>>>> 7d3b9dac1db48f7f490788aca4dc2da5810b79a4
   }
 });
 
