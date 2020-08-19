@@ -18,7 +18,6 @@ export const QUERY_USER = gql`
         weight
         distance
         time
-        workoutCategory
       }
     }
   }
