@@ -53,5 +53,9 @@ db.once('open', async () => {
 
   console.log('users seeded');
 
+  await WorkoutRoutine.deleteMany();
+
+  console.log('routines deleted');
+
   process.exit();
 });

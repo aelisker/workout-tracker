@@ -29,20 +29,25 @@ function Detail() {
     // event.preventDefault();
     try {
       const submit = await saveRoutine({
-        variables: { input: [
+        variables: { workoutId: formState.workoutId, input: [
           { name: currentExercise.name, description: currentExercise.description, videoLink: currentExercise.videoLink, 
             trackReps: currentExercise.trackReps, trackWeight: currentExercise.trackWeight, 
             trackDistance: currentExercise.trackDistance, trackTime: currentExercise.trackTime,
             reps:  Number(formState.reps), weight: Number(formState.weight), 
-            distance: Number(formState.distance), time: Number(formState.time) }] }
+            distance: Number(formState.distance), time: Number(formState.time) }]}
       })
-      console.log('SUBMISSION', submit);
+      setFormState({
+        ...formState,
+        workoutId: submit.data.saveRoutine._id.toString(),
+      });
+      console.log('WORKOUT ID', formState.workoutId);
+      
     } catch (error) {
       console.log(error);
     }
   }
 
-  const [formState, setFormState] = useState({ time: 0, weight: 0, reps: 0, distance: 0 });
+  const [formState, setFormState] = useState({ time: 0, weight: 0, reps: 0, distance: 0, workoutId: null });
   const [workouts, setWorkouts] = useState([])
   const [count, setCount] = useState(0)
 
