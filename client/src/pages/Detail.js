@@ -36,7 +36,7 @@ function Detail() {
             reps:  Number(formState.reps), weight: Number(formState.weight), 
             distance: Number(formState.distance), time: Number(formState.time) }] }
       })
-      console.log(submit);
+      console.log('SUBMISSION', submit);
     } catch (error) {
       console.log(error);
     }
@@ -176,7 +176,8 @@ function Detail() {
           </div>
           {
             workouts.map(workout => {
-              return (<div key="div-container-set">
+              return (
+              <div key="div-container-set">
                 {currentExercise.trackTime ? <div key="time-div" className="d-flex justify-content-center">Time: {workout.time} minutes</div> : ''}
                 {currentExercise.trackDistance ? <div key="distance-div" className="d-flex justify-content-center">Distance: {workout.distance} feet</div> : ''}
                 {currentExercise.trackWeight ? <div key="weight-div" className="d-flex justify-content-center">Weight: {workout.weight} lbs</div> : ''}

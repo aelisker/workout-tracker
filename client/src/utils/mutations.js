@@ -27,21 +27,38 @@ export const SAVE_ROUTINE = gql`
 mutation saveRoutine($input: [exerciseInput], $workoutId: ID) {
   saveRoutine(input: $input, workoutId: $workoutId ) {
     _id
-    username
-    email
-    workouts {
-      _id
-      workoutDate
-      exercises {
-        name
-        description
-        videoLink
-        weight
-        reps
-        distance
-        time
-      }
-      }
+    workoutDate
+    exercises {
+      name
+      description
+      videoLink
+      weight
+      reps
+      distance
+      time
     }
   }
-`;
+}`;
+
+// export const SAVE_ROUTINE = gql`
+// mutation saveRoutine($input: [exerciseInput], $workoutId: ID) {
+//   saveRoutine(input: $input, workoutId: $workoutId ) {
+//     _id
+//     username
+//     email
+//     workouts {
+//       _id
+//       workoutDate
+//       exercises {
+//         name
+//         description
+//         videoLink
+//         weight
+//         reps
+//         distance
+//         time
+//       }
+//       }
+//     }
+//   }
+// `;

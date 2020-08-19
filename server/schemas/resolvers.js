@@ -58,17 +58,18 @@ const resolvers = {
             // { new: true }
           );
           // add updated routine to user workout array
-          const user = await User.findByIdAndUpdate(context.user._id, { $addToSet: { workouts: workout }}, { new: true, upsert: true });
-          return user;
+          await User.findByIdAndUpdate(context.user._id, { $addToSet: { workouts: workout }}, { new: true, upsert: true });
+          return workout;
 
           // if no workout routine with queried ID, create new one
         } else if (isWorkout === null) {
           const workout  = await WorkoutRoutine.create(
             { exercises: args.input }
           );
-          const user = await User.findByIdAndUpdate(context.user._id, { $addToSet: { workouts: workout }}, {new: true});
-          console.log(workout);
-          return { user, workout };
+          await User.findByIdAndUpdate(context.user._id, { $addToSet: { workouts: workout }}, {new: true});
+          console.log('WORKOUT ID', workout._id);
+          // return { user: user, workoutId: workout._id };
+          return workout;
         }
       } throw new AuthenticationError('Not logged in');
     },
