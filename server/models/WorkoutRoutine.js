@@ -59,11 +59,6 @@ const routineExerciseSchema = new Schema({
 });
 
 const workoutRoutineSchema = new Schema({
-  // _id: {
-  //   type: Schema.Types.ObjectId,
-  //   required: true,
-  //   unique: true
-  // },
   workoutDate: {
     // type: String,
     // default: moment(Date.now()).format("MMM Do YY"),

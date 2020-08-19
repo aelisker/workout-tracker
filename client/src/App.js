@@ -8,9 +8,9 @@ import './App.css';
 import Header from './components/Header';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import WorkoutSets from './pages/WorkoutSets';
 import Detail from './pages/Detail';
 import ExerciseList from './components/ExerciseList';
+import Workout from './pages/Workout';
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -38,11 +38,10 @@ function App() {
               exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
-              <Route exact path="/5f38a4b9dbfed8512853da6d" component={WorkoutSets} />
-              <Route exact path="/5f38a4b9dbfed8512853da6c" component={WorkoutSets} />
               <Route exact path="/list" component={ExerciseList} />
               <Route exact path="/exercise/:id" component={Detail} />
-
+              <Route exact path="/workout" component={Workout} />
+              
               <Route component={NoMatch} />
             </Switch>
           {/* </StoreProvider> */}
