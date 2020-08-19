@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Calendar from '../components/Calendar';
 
 function Home(props) {
 
@@ -22,6 +23,7 @@ function Home(props) {
   ])
 
   return (
+    <>
     <header className="flex-row px-1 header-stylin">
       <div className="row ">
         <div className="column ">
@@ -129,6 +131,8 @@ function Home(props) {
       </div>
 
     </header>
+    <Calendar></Calendar>
+    </>
   );
 }
 

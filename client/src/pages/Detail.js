@@ -8,6 +8,7 @@ import { SAVE_ROUTINE } from '../utils/mutations';
 
 import spinner from '../assets/spinner.gif'
 
+
 function Detail() {
   const { id } = useParams();
   const [currentExercise, setCurrentExercise] = useState({});
@@ -192,6 +193,7 @@ function Detail() {
       {
         loading ? <img src={spinner} alt="loading" /> : null
       }
+  
     </>
   );
 }
