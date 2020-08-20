@@ -74,7 +74,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    user: [User]
+    user: User
     exercises: [IndividualExercise]
     exercise(_id: ID!): IndividualExercise
   }

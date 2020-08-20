@@ -84,6 +84,7 @@ function Detail() {
     <>
       {currentExercise ? (
         <>
+
           <div className="container my-1">
             <Link to="/list">
               ← Back to Exercise List
@@ -229,6 +230,7 @@ function Detail() {
                   </div>)
               })}
           </div>
+ 
         </>
 
 

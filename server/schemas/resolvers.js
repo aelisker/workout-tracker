@@ -26,8 +26,8 @@ const resolvers = {
   }),
 
   Query: {
-    user: async () => {
-      return await User.find({});
+    user: async (parent, args, context) => {
+      return await User.findOne({ _id: context.user._id });
     },
 
     exercises: async () => {

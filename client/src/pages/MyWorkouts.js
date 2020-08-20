@@ -5,13 +5,14 @@ import { QUERY_USER } from '../utils/queries';
 function MyWorkouts () {
   const { loading, data } = useQuery(QUERY_USER);
   const user = data?.user || [];
-  console.log(user);
+  console.log("i am at user")
+  console.log(user.length);
 
   return (
     <>
-      {user.length ? (
+      {user.workouts ? (
           <div className="flex-row">
-              {user[0].workouts.map(workout => (
+              {user.workouts.map(workout => (
                 <>
                   <p>Workout ID: {workout._id}</p>
                   <p> Workout Date: {workout.workoutDate}</p>
