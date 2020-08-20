@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { QUERY_EXERCISE } from '../utils/queries';
 import { useMutation } from '@apollo/react-hooks';
 import { SAVE_ROUTINE } from '../utils/mutations';
+import YouTube from 'react-youtube';
 
 import spinner from '../assets/spinner.gif'
 
@@ -101,6 +102,16 @@ function Detail() {
             <p className="mt-3">
               {currentExercise.description}
             </p>
+
+            <iframe 
+              width="560" 
+              height="315" 
+              src={`https://www.youtube.com/embed/${currentExercise.videoLink}`} 
+              frameborder="0" 
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+
           </div>
         </div>
 
