@@ -1,16 +1,28 @@
 import React from "react";
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_USER } from '../utils/queries';
+import moment from 'moment';
+import Calendar from "../components/Calendar";
+//import Calendar from '../components/Calendar';
 
-function MyWorkouts () {
+function MyWorkouts() {
   const { loading, data } = useQuery(QUERY_USER);
   const user = data?.user || [];
   console.log(user);
+  if (user.workouts){
+  var dateChange = moment.unix(user.workouts.map(workout=>workout).workoutDate).format("YYYY/MM/DD");
+  console.log(dateChange);
+  }
 
-  return (
-    <>
-      {user.length ? (
-          <div className="flex-row">
+  // var currentDate = new Date().moment.format("YYYY/MM/DD");
+  // console.log(currentDate);
+
+  //if (dateChange == currentDate) {
+    return (
+      <>
+        <div>
+          {user.length ? (
+            <div className="flex-row">
               {user[0].workouts.map(workout => (
                 <>
                   <p>Workout ID: {workout._id}</p>
@@ -26,12 +38,23 @@ function MyWorkouts () {
                   ))}</p>
                 </>
               ))}
-          </div>
-        ) : (
-          <h3>No Workouts Found</h3>
-        )}
-    </>
-  );
+            </div>
+          ) : (
+              <h3>No Workouts Found</h3>
+            )}
+        </div>
+        <Calendar></Calendar>
+      </>
+    );
+  //} else {
+  //  return (
+      //<>
+        //<div>
+        //  <p>You have no workout for this Date!</p>
+        //</div>
+     // </>
+    //)
+  //}
 };
 
 export default MyWorkouts;
