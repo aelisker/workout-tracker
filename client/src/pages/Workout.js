@@ -9,6 +9,7 @@ import { SAVE_ROUTINE } from '../utils/mutations';
 import spinner from '../assets/spinner.gif'
 import IndividualRoutineExercise from '../components/IndividualRoutineExercise';
 import IndividualExercise from '../components/IndividualExercise';
+import ExerciseInWorkoutList from '../components/ExerciseInWorkoutList';
 
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import MenuItem from 'react-bootstrap/DropdownItem'
@@ -46,6 +47,9 @@ function Workout() {
 
   return (
     <>
+      {typeof state.currentWorkout.exercises === 'undefined' ? 
+      (<h1>Add a Workout?</h1>) : 
+      (<h1>Current Workout</h1>)}
       <div>
         <DropdownButton title={button} onSelect={function (evt) { 
             // setButton(evt)
@@ -76,6 +80,11 @@ function Workout() {
         trackTime={exerciseState.trackTime}
       />
       ) : ''}
+      {typeof state.currentWorkout.exercises !== 'undefined' ? (
+      <ExerciseInWorkoutList 
+        key={state._id}
+        state={state}
+      />) : ''}
     </>
   )
 }

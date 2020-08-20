@@ -19,12 +19,15 @@ function Header() {
 
           {Auth.loggedIn() ? (
                 <>
-                <div>
-                  <a href="/myworkouts" className="d-flex justify-content-end login-size">My Workouts</a>
-                </div>
-                <div>
-                  <a href="/" onClick={Auth.logout}  className="d-flex justify-content-end login-size">Logout</a>
-                </div>
+                  <div>
+                    <a href="/workout" className="d-flex justify-content-end login-size">New Workout</a>
+                  </div>
+                  <div>
+                    <a href="/myworkouts" className="d-flex justify-content-end login-size">My Workouts</a>
+                  </div>
+                  <div>
+                    <a href="/" onClick={Auth.logout}  className="d-flex justify-content-end login-size">Logout</a>
+                  </div>
                 </>
               ) : (
                 <div>
