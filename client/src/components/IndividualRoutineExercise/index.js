@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { SAVE_ROUTINE } from '../../utils/mutations';
 
+import { useStoreContext } from '../../utils/GlobalState';
+import { UPDATE_CURRENT_WORKOUT } from '../../utils/actions';
+
 function IndividualRoutineExercise(props) {
   const {
     _id,
@@ -18,6 +21,8 @@ function IndividualRoutineExercise(props) {
     weight,
     workoutId
   } = props;
+
+  const [state, dispatch] = useStoreContext();
   
   const [saveRoutine, { error }] = useMutation(SAVE_ROUTINE);
 
@@ -28,7 +33,8 @@ function IndividualRoutineExercise(props) {
 
   useEffect(() => {
     // setCurrentExercise(props);
-    setFormState({ ...formState, props })
+    // setFormState({ ...formState, props })
+    console.log('STATE', state);
   }, [props]);
 
 
@@ -37,7 +43,7 @@ function IndividualRoutineExercise(props) {
     try {
       const submit = await saveRoutine({
         variables: {
-          workoutId: formState.workoutId, input: [
+          workoutId: state.currentWorkout._id, input: [
             {
               name: formState.name, description: formState.description, videoLink: formState.videoLink,
               trackReps: formState.trackReps, trackWeight: formState.trackWeight,
@@ -47,12 +53,20 @@ function IndividualRoutineExercise(props) {
             }]
         }
       })
+      dispatch({
+        type: UPDATE_CURRENT_WORKOUT,
+        workout: submit.data.saveRoutine
+      })
       setFormState({
         ...formState,
-        workoutId: submit.data.saveRoutine._id.toString(),
+        // workoutId: submit.data.saveRoutine._id.toString()
+        workoutId: state._id
       });
-      console.log(submit);
-      console.log('WORKOUT ID', formState.workoutId);
+      // console.log('STATE', state);
+      // console.log('STATE WORKOUT ID', state.currentWorkout._id)
+      // console.log(submit);
+      // console.log('WORKOUT ID', submit.data.saveRoutine._id.toString())
+      // console.log('WORKOUT ID', formState.workoutId);
 
     } catch (error) {
       console.log(error);

@@ -13,6 +13,9 @@ import ExerciseList from './components/ExerciseList';
 import Workout from './pages/Workout';
 import MyWorkouts from './pages/MyWorkouts';
 
+import { StoreProvider } from './utils/GlobalState';
+
+
 const client = new ApolloClient({
   request: (operation) => {
     const token = localStorage.getItem('id_token')
@@ -31,7 +34,7 @@ function App() {
       <Router>
         <div>
           <Header></Header>
-          {/* <StoreProvider> */}
+          <StoreProvider>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
@@ -43,7 +46,7 @@ function App() {
 
               <Route component={NoMatch} />
             </Switch>
-          {/* </StoreProvider> */}
+          </StoreProvider>
         </div>
       </Router>
     </ApolloProvider>

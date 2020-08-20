@@ -14,19 +14,22 @@ import DropdownButton from 'react-bootstrap/DropdownButton'
 import MenuItem from 'react-bootstrap/DropdownItem'
 import Button from 'react-bootstrap/Button'
 
+import { useStoreContext } from '../utils/GlobalState';
+import { UPDATE_CURRENT_WORKOUT } from '../utils/actions';
 
 function Workout() {
+  const [state, dispatch] = useStoreContext();
   const { loading, data } = useQuery(QUERY_ALL_EXERCISES);
   const exercises = data?.exercises || [];
   const [button, setButton] = useState('Select an Exercise');
   const [exerciseState, setExerciseState] = useState({
-    _id: '', name: '', description: '', videoLink: '',
-    trackDistance: '', trackTime: '', trackWeight: '', trackReps: ''
+    // _id: '', name: '', description: '', videoLink: '',
+    // trackDistance: '', trackTime: '', trackWeight: '', trackReps: '', workoutId: ''
   });
 
-  const addExercise = (exerciseName, event) => {
+  const addExercise = async (exerciseName) => {
     setButton(exerciseName);
-    const indEx = exercises.filter(exercise => exercise.name === exerciseName);
+    const indEx =  await exercises.filter(exercise => exercise.name === exerciseName);
     setExerciseState(
       {
         _id: indEx[0]._id, name: indEx[0].name, description: indEx[0].description, videoLink: indEx[0].videoLink,
@@ -34,8 +37,12 @@ function Workout() {
       }
     );
     console.log(indEx[0]);
-    console.log(exerciseState);
+    // console.log(exerciseState);
   };
+
+  useEffect(() => {
+    console.log(exerciseState)
+  }, [exerciseState])
 
   return (
     <>
