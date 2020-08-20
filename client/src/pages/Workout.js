@@ -24,7 +24,8 @@ function Workout() {
     trackDistance: '', trackTime: '', trackWeight: '', trackReps: ''
   });
 
-  const addExercise = (exerciseName) => {
+  const addExercise = (exerciseName, event) => {
+    setButton(exerciseName);
     const indEx = exercises.filter(exercise => exercise.name === exerciseName);
     setExerciseState(
       {
@@ -39,18 +40,21 @@ function Workout() {
   return (
     <>
       <div>
-        <DropdownButton title={button} onSelect={function (evt) { setButton(evt) }}>
+        <DropdownButton title={button} onSelect={function (evt) { 
+            // setButton(evt)
+            addExercise(evt) 
+          }}>
           {exercises.map(exercise => (
             <MenuItem key={exercise._id} eventKey={exercise.name}>{exercise.name}</MenuItem>
           ))}
         </DropdownButton>
       </div>
-      <Button
+      {/* <Button
         variant="outline-primary"
         onClick={() => {
           addExercise(button)
         }
-        }>Add Selected Exercise</Button>{' '}
+        }>Add Selected Exercise</Button>{' '} */}
 
 
       {exerciseState.name ? (
