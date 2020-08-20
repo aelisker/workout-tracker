@@ -99,7 +99,36 @@ const resolvers = {
 
       return { token, user };
     }
-  }
+  ,
+    removeExercise: async (parent, args, context) => {
+        console.log("i am at line 61")
+        // console.log(exerciseId)
+        // console.log(workoutId)
+
+      // const updatedUser = await User.findByIdAndUpdate(
+      // { _id: context.user._id },
+      // {_id: workoutId},
+      // { $pull: {workouts:{exercises: { _id: exerciseId }  }}},
+      // { new: true }
+      // );
+      // return updatedUser;
+
+      const workout  = await WorkoutRoutine.findByIdAndUpdate(
+        { _id: args.workoutId }, 
+        { $pull: { exercises:{_id: args.exerciseId }}},
+        { new: true }
+      );
+      console.log("i am at workout")
+      console.log(workout)
+      await User.findByIdAndUpdate(
+              context.user._id ,
+              { $pull: { workouts: { _id: args.workoutId }}},
+            );
+      await User.findByIdAndUpdate(context.user._id, { $addToSet: { workouts: workout }}, { new: true, upsert: true });
+      return workout;
+
+    },
+   }
 };
 
 module.exports = resolvers;

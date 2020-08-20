@@ -35,14 +35,14 @@ function App() {
         <div className="container">
           <Header></Header>
           <StoreProvider>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/signup" component={Signup} />
-              <Route exact path="/list" component={ExerciseList} />
-              <Route exact path="/exercise/:id" component={Detail} />
-              <Route exact path="/workout" component={Workout} />
-              <Route exact path="/myworkouts" component={MyWorkouts} />
+            <Switch key="Switch">
+              <Route exact path="/" component={Home} key="Home" />
+              <Route exact path="/login" component={Login} key="Login" />
+              <Route exact path="/signup" component={Signup} key="Signup" />
+              <Route exact path="/list" component={ExerciseList} key="ExerciseList" />
+              <Route exact path="/exercise/:id" component={Detail} key= "Detail" />
+              <Route exact path="/workout" component={Workout} key="Workout" />
+              <Route exact path="/myworkouts" component={MyWorkouts} key="MyWorkouts" />
 
               <Route component={NoMatch} />
             </Switch>
