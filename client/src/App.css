@@ -14,16 +14,28 @@
 }
 
 .title {
-  color: white;
+  color: white !important;
   font-size: 5vw;
   text-align: left;
   display: flex;
   margin: 15px;
 }
 
+a.d-flex.title:hover {
+  color: white !important;
+}
+
 .page-header {
   display: flex !important;
   justify-content: space-between;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: rgb(214,31,192);
+  background: linear-gradient(90deg, rgba(214,31,192,1) 2%, rgba(133,35,213,1) 33%, rgba(36,73,218,1) 74%, rgba(12,159,214,1) 100%);
+  background-size: 4000px 4000px;
+  background-attachment: scroll !important;
 }
 
 nav {
@@ -35,6 +47,12 @@ header nav ul {
   list-style: none;
   margin: 15px;
   color: white;;
+}
+
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit !important;
+  border: none;
 }
 
 .login-size {

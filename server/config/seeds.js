@@ -35,7 +35,7 @@ db.once('open', async () => {
       name: 'Plank',
       description:
         'Lay face down with elbows holding you up. Keep core engaged.',
-      videoLink: 'https://www.youtube.com/watch?v=rxD321l2svE',
+      videoLink: 'https://www.youtube.com/watch?v=kL_NJAkCQBg',
       workoutCategory: workoutCategories[4]._id,
       time: 0,
       trackTime: true
