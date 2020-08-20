@@ -18,7 +18,6 @@ export const QUERY_USER = gql`
         weight
         distance
         time
-        workoutCategory
       }
     }
   }
@@ -32,6 +31,7 @@ export const QUERY_EXERCISE = gql`
       name
       description
       videoLink
+      imageName
       trackReps
       trackWeight
       trackDistance
@@ -51,6 +51,7 @@ export const QUERY_ALL_EXERCISES = gql`
         name
         description
         videoLink
+        imageName
         trackReps
         trackWeight
         trackDistance

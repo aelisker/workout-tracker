@@ -26,7 +26,11 @@ const resolvers = {
   }),
 
   Query: {
-    user: async () => {
+    user: async (parent, args, context) => {
+      return await User.findById({ _id: context.user._id });
+    },
+
+    users: async () => {
       return await User.find({});
     },
 
@@ -42,6 +46,7 @@ const resolvers = {
   Mutation: {
     saveRoutine: async (parent, args, context) => {
       console.log('USER CONTEXT', context.user);
+      console.log('ARGS', args);
       if (context.user) {
         const isWorkout = await WorkoutRoutine.findById(args.workoutId);
         // if workout exists, update workout
@@ -67,14 +72,13 @@ const resolvers = {
             { exercises: args.input }
           );
           await User.findByIdAndUpdate(context.user._id, { $addToSet: { workouts: workout }}, {new: true});
-          console.log('WORKOUT ID', workout._id);
-          // return { user: user, workoutId: workout._id };
           return workout;
         }
       } throw new AuthenticationError('Not logged in');
     },
 
     addUser: async (parent, args) => {
+      console.log('ARGS', args)
       const user = await User.create(args);
       const token = signToken(user);
 
@@ -82,8 +86,6 @@ const resolvers = {
     },
 
     login: async (parent, { email, password }) => {
-      // login: async (parent, args) => {
-      // console.log(args);
       const user = await User.findOne({ email });
 
       if (!user) {

@@ -1,28 +1,15 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
 import Calendar from '../components/Calendar';
+=======
+import React from 'react';
+import ExerciseList from '../components/ExerciseList';
+>>>>>>> feature/styling
 
-function Home(props) {
-
-  const {
-
-    setContactSelected
-  } = props;
-
-  const [currentWorkout, setCurrentWorkout] = useState("");
-
-  const [workout] = useState([
-    {
-      name: 'WorkoutSets'
-    },
-    {
-      name: 'WorkoutDistance'
-    },
-    {
-      name: 'WorkoutReps'
-    }
-  ])
+function Home() {
 
   return (
+<<<<<<< HEAD
     <>
     <header className="flex-row px-1 header-stylin">
       <div className="row ">
@@ -133,6 +120,9 @@ function Home(props) {
     </header>
     <Calendar></Calendar>
     </>
+=======
+    <ExerciseList></ExerciseList>
+>>>>>>> feature/styling
   );
 }
 

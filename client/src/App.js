@@ -8,9 +8,13 @@ import './App.css';
 import Header from './components/Header';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import WorkoutSets from './pages/WorkoutSets';
 import Detail from './pages/Detail';
 import ExerciseList from './components/ExerciseList';
+import Workout from './pages/Workout';
+import MyWorkouts from './pages/MyWorkouts';
+
+import { StoreProvider } from './utils/GlobalState';
+
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -28,24 +32,21 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div>
+        <div className="container-fluid">
           <Header></Header>
-          {/* <StoreProvider> */}
+          <StoreProvider>
             <Switch>
-              <Route 
-              // currentWorkout = {currentWorkout}
-              // setCurrentWorkout = {setCurrentWorkout}
-              exact path="/" component={Home} />
+              <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
-              <Route exact path="/5f38a4b9dbfed8512853da6d" component={WorkoutSets} />
-              <Route exact path="/5f38a4b9dbfed8512853da6c" component={WorkoutSets} />
               <Route exact path="/list" component={ExerciseList} />
               <Route exact path="/exercise/:id" component={Detail} />
+              <Route exact path="/workout" component={Workout} />
+              <Route exact path="/myworkouts" component={MyWorkouts} />
 
               <Route component={NoMatch} />
             </Switch>
-          {/* </StoreProvider> */}
+          </StoreProvider>
         </div>
       </Router>
     </ApolloProvider>

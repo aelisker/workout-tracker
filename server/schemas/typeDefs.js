@@ -30,6 +30,7 @@ const typeDefs = gql`
     name: String
     description: String
     videoLink: String
+    imageName: String
     trackReps: Boolean
     trackWeight: Boolean
     trackDistance: Boolean
@@ -74,7 +75,8 @@ const typeDefs = gql`
   }
 
   type Query {
-    user: [User]
+    user: User
+    users: [User]
     exercises: [IndividualExercise]
     exercise(_id: ID!): IndividualExercise
   }
