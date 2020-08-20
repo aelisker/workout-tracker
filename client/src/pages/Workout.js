@@ -34,7 +34,7 @@ function Workout() {
     setExerciseState(
       {
         _id: indEx[0]._id, name: indEx[0].name, description: indEx[0].description, videoLink: indEx[0].videoLink,
-        trackDistance: indEx[0].trackDistance, trackTime: indEx[0].trackTime, trackWeight: indEx[0].trackWeight, trackReps: indEx[0].trackWeight
+        trackDistance: indEx[0].trackDistance, trackTime: indEx[0].trackTime, trackWeight: indEx[0].trackWeight, trackReps: indEx[0].trackReps
       }
     );
     console.log(indEx[0]);

@@ -30,6 +30,7 @@ const Signup = () => {
     } catch (e) {
       console.error(e);
     }
+    console.log(error)
   };
 
   return (
