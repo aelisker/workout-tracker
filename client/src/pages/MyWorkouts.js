@@ -2,34 +2,32 @@ import React from "react";
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_USER } from '../utils/queries';
 
-function MyWorkouts () {
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+
+import moment from 'moment';
+
+function MyWorkouts() {
   const { loading, data } = useQuery(QUERY_USER);
   const user = data?.user || [];
   console.log(user);
 
+  let workoutArr = [];
+  if (user.workouts) {
+    workoutArr = user.workouts.map(workout =>
+      ({ title: workout._id, date: moment(workout.workoutDate).format("YYYY-MM-DD") }));
+    console.log(workoutArr);
+  };
+
   return (
     <>
-      {user.workouts ? (
-          <div className="flex-row">
-              {user.workouts.map(workout => (
-                <div key={workout._id}>
-                  <p>Workout ID: {workout._id}</p>
-                  <p>Workout Date: {workout.workoutDate}</p>
-                  <p>Exercises: {workout.exercises.map(exercise => (
-                    <ul>
-                      <li>{exercise.name}</li>
-                      {exercise.weight ? (<li>Weight: {exercise.weight}</li>) : ''}
-                      {exercise.reps ? (<li>Reps: {exercise.reps}</li>) : ''}
-                      {exercise.time ? (<li>Time: {exercise.time}</li>) : ''}
-                      {exercise.distance ? (<li>Distance: {exercise.distance}</li>) : ''}
-                    </ul>
-                  ))}</p>
-                </div>
-              ))}
-          </div>
-        ) : (
-          <h3>No Workouts Found</h3>
-        )}
+      {workoutArr.length ? (
+        <FullCalendar
+          plugins={[dayGridPlugin]}
+          initialView="dayGridMonth"
+          weekends={false}
+          events={workoutArr}
+        />) : ''}
     </>
   );
 };

@@ -32,7 +32,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="container">
+        <div className="container-fluid">
           <Header></Header>
           <StoreProvider>
             <Switch>

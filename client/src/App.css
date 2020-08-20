@@ -21,6 +21,11 @@
   margin: 15px;
 }
 
+.container-fluid {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 a.d-flex.title:hover {
   color: white !important;
 }
