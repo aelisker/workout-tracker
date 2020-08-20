@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+
+* {
+	font-family: "Roboto Slab";
+}
+
 .App {
   text-align: center;
 }
@@ -7,12 +13,33 @@
   pointer-events: none;
 }
 
-/* .container {
-  padding-right: 0 !important;
-  padding-left: 0 !important;
-  margin-right: 0 !important;
-  margin-left: 0 !important;
-} */
+.title {
+  color: white;
+  font-size: 5vw;
+  text-align: left;
+  display: flex;
+  margin: 15px;
+}
+
+.page-header {
+  display: flex !important;
+  justify-content: space-between;
+}
+
+nav {
+  display: flex;
+}
+
+header nav ul {
+  align-items: right;
+  list-style: none;
+  margin: 15px;
+  color: white;;
+}
+
+.login-size {
+  color: white;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

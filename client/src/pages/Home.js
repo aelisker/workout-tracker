@@ -1,12 +1,10 @@
 import React from 'react';
 import ExerciseList from '../components/ExerciseList';
 
-function Home(props) {
+function Home() {
 
   return (
-    <header className="flex-row px-1 header-stylin">
-      <ExerciseList></ExerciseList>
-    </header>
+    <ExerciseList></ExerciseList>
   );
 }
 

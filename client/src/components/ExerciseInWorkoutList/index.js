@@ -14,18 +14,6 @@ function ExerciseInWorkoutList(props) {
             {exercise.weight ? (<span> Weight: {exercise.weight}lbs</span>) : ''}
           </p>
         ))}
-        <p>Test
-        
-
-                  {/* time={props.exercise.time}
-                  distance={props.exercise.distance}
-                  reps={props.exercise.reps}
-                  weight={props.exercise.weight}
-                  trackTime={props.exercise.trackTime}
-                  trackdistance={props.exercise.trackDistance}
-                  trackReps={props.exercise.trackReps}
-                  trackWeight={props.exercise.trackWeight} */}
-        </p>
       </div>
     </div>
   )
