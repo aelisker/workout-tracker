@@ -60,13 +60,6 @@ function Workout() {
           ))}
         </DropdownButton>
       </div>
-      {/* <Button
-        variant="outline-primary"
-        onClick={() => {
-          addExercise(button)
-        }
-        }>Add Selected Exercise</Button>{' '} */}
-
 
       {exerciseState.name ? (
       <IndividualRoutineExercise

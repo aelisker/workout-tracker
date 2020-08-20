@@ -9,12 +9,12 @@ function MyWorkouts () {
 
   return (
     <>
-      {user.length ? (
+      {user.workouts ? (
           <div className="flex-row">
-              {user[0].workouts.map(workout => (
-                <>
+              {user.workouts.map(workout => (
+                <div key={workout._id}>
                   <p>Workout ID: {workout._id}</p>
-                  <p> Workout Date: {workout.workoutDate}</p>
+                  <p>Workout Date: {workout.workoutDate}</p>
                   <p>Exercises: {workout.exercises.map(exercise => (
                     <ul>
                       <li>{exercise.name}</li>
@@ -24,7 +24,7 @@ function MyWorkouts () {
                       {exercise.distance ? (<li>Distance: {exercise.distance}</li>) : ''}
                     </ul>
                   ))}</p>
-                </>
+                </div>
               ))}
           </div>
         ) : (

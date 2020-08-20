@@ -15,34 +15,22 @@ const individualExerciseSchema = new Schema({
     type: String,
     trim: true 
   },
-  // reps: {
-  //   type: Number,
-  //   min: 0
-  // },
+  imageName: {
+    type: String,
+    trim: true
+  },
   trackReps: {
     type: Boolean,
-    default: true
+    default: false
   },
-  // weight: {
-  //   type: Number,
-  //   min: 0
-  // },
   trackWeight: {
     type: Boolean,
     default: false
   },
-  // distance: {
-  //   type: Number,
-  //   min: 0
-  // },
   trackDistance: {
     type: Boolean,
     default: false
   },
-  // time: {
-  //   type: Number,
-  //   min: 0
-  // },
   trackTime: {
     type: Boolean,
     default: false
