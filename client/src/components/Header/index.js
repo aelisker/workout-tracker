@@ -1,14 +1,16 @@
 import React from 'react';
 import Auth from '../../utils/auth';
+import Background from '../../assets/img/gradient.png'
 
 function Header() {
 
   return (
     <header
+      // using css generated gradient instead
       // style={{
       //   backgroundImage: `url(${Background})`
       // }}
-      className="flex-row px-1 header-stylin header-color page-header "
+      className="flex-row px-1 header-stylin page-header "
     >
       <h1 className="header-left">
         <a href="/" className="d-flex title">
