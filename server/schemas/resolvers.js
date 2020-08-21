@@ -124,7 +124,24 @@ const resolvers = {
               context.user._id ,
               { $pull: { workouts: { _id: args.workoutId }}},
             );
-      await User.findByIdAndUpdate(context.user._id, { $addToSet: { workouts: workout }}, { new: true, upsert: true });
+      await User.findByIdAndUpdate(
+        context.user._id, 
+        { $addToSet: { workouts: workout }}, 
+        { new: true, upsert: true });
+      console.log("i am at exercise length")
+      console.log(workout.exercises) 
+      if(workout.exercises.length == 0) {
+        // const workout2 =  await WorkoutRoutine.findByIdAndDelete(
+        //     {_id: context.user._id},
+        //     {workouts:{_id: args.workoutId}},
+        //   );
+        console.log("i am at empty exercise")
+          await User.findByIdAndUpdate(
+            {_id: context.user._id},
+            { $pull: { workouts: {_id: args.workoutId}}},
+          )
+        }
+ 
       return workout;
 
     },

@@ -2,17 +2,26 @@ import React from "react";
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_USER } from '../utils/queries';
 import Auth from '../utils/auth';
+import { REMOVE_EXERCISE } from '../utils/mutations';
+import { useMutation } from '@apollo/react-hooks';
 
 function MyWorkouts () {
   const { loading, data } = useQuery(QUERY_USER);
   const user = data?.user || [];
   console.log("i am at user")
   console.log(user)
-
-const handleDeleteExercise = async (exerciseId) => {
+  const [removeExercise] = useMutation(REMOVE_EXERCISE);
+  const handleDeleteExercise = async (exerciseId, workoutId) => {
   const token = Auth.loggedIn() ? Auth.getToken() : null;
   if (!token) {
     return false;
+  }
+  try {
+    await removeExercise({
+    variables: {exerciseId, workoutId }
+    });
+  } catch (e) {
+    console.error(e);
   }
 }
 
@@ -27,7 +36,7 @@ const handleDeleteExercise = async (exerciseId) => {
                   <p key={workout.workoutDate}> Workout Date: {workout.workoutDate}</p>
                   <p >Exercises: {workout.exercises.map(exercise => (
                     <ul key = {exercise._id}>
-                      <button onClick={() => handleDeleteExercise(exercise._id)}>Remove Exercise</button>
+                      <button onClick={() => handleDeleteExercise(exercise._id,workout._id)}>Remove Exercise</button>
                       <li key={exercise.name}>{exercise.name}</li>           
                       {exercise.weight ? (<li key={exercise.weight}>Weight: {exercise.weight}</li>) : ''}
                       {exercise.reps ? (<li key={exercise.reps}>Reps: {exercise.reps}</li>) : ''}
