@@ -40,25 +40,27 @@ mutation saveRoutine($input: [exerciseInput], $workoutId: ID) {
   }
 }`;
 
-// export const SAVE_ROUTINE = gql`
-// mutation saveRoutine($input: [exerciseInput], $workoutId: ID) {
-//   saveRoutine(input: $input, workoutId: $workoutId ) {
-//     _id
-//     username
-//     email
-//     workouts {
-//       _id
-//       workoutDate
-//       exercises {
-//         name
-//         description
-//         videoLink
-//         weight
-//         reps
-//         distance
-//         time
-//       }
-//       }
-//     }
-//   }
-// `;
+export const REMOVE_EXERCISE = gql`
+mutation removeExercise($exerciseId: ID!, $workoutId: ID!) {
+  removeExercise(exerciseId: $exerciseId, workoutId:$workoutId) {
+  _id
+  username
+  email
+  workouts {
+    _id
+    workoutDate
+    exercises {
+      _id
+      name
+      description
+      videoLink
+      reps
+      weight
+      distance
+      time
+    }
+  }
+
+  }
+}
+`;

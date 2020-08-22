@@ -101,8 +101,40 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
-    }
-  }
+    },
+    removeExercise: async (parent, args, context) => {
+      console.log("i am at line 61")
+
+
+    const workout  = await WorkoutRoutine.findByIdAndUpdate(
+      { _id: args.workoutId }, 
+      { $pull: { exercises:{_id: args.exerciseId }}},
+      { new: true }
+    );
+    console.log("i am at workout")
+    console.log(workout)
+    await User.findByIdAndUpdate(
+            context.user._id ,
+            { $pull: { workouts: { _id: args.workoutId }}},
+          );
+    await User.findByIdAndUpdate(
+      context.user._id, 
+      { $addToSet: { workouts: workout }}, 
+      { new: true, upsert: true });
+    console.log("i am at exercise length")
+    console.log(workout.exercises) 
+    if(workout.exercises.length == 0) {
+      // const workout2 =  await WorkoutRoutine.findByIdAndDelete(
+      //     {_id: context.user._id},
+      //     {workouts:{_id: args.workoutId}},
+      //   );
+      console.log("i am at empty exercise")
+        await User.findByIdAndUpdate(
+          {_id: context.user._id},
+          { $pull: { workouts: {_id: args.workoutId}}},
+        )
+      }
+  }}
 };
 
 module.exports = resolvers;
