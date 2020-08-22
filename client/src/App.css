@@ -68,6 +68,27 @@ a, a:hover, a:focus, a:active {
   height: 100%;
 }
 
+.single-exercise {
+  align-self: start;
+}  
+
+.input-label {
+  min-width: 20%
+}
+
+.input-area {
+  min-width: 35%;
+  margin-top: 10px;
+}
+
+.input-field {
+  width: 100%;
+}
+
+.workout-text {
+  size: 30px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

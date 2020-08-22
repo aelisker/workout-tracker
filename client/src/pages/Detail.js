@@ -18,13 +18,13 @@ function Detail() {
       {exercise ? (
         <div className="container justify-content-center">
           <div className="justify-content-center my-1">
-            <Link 
+            {/* <Link 
               to="/list"
-              className="mb-3">
+              className="my-3">
               ← Back to Exercise List
-            </Link>
+            </Link> */}
 
-            <h2>
+            <h2 className="mt-3">
               {exercise.name} - 
               <small className="mb-3">
               {' '}{exercise.workoutCategory ? exercise.workoutCategory.name : null}

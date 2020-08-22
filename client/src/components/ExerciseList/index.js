@@ -15,9 +15,9 @@ function ExerciseList() {
   const exercises = data?.exercises || [];
 
   return (
-    <div className="my-2">
+    <div className="my-2 mx-3">
       <h2>Available Exercises:</h2>
-      <div class="row justify-content-center">
+      <div className="row justify-content-center">
       {exercises.length ? (
         <CardDeck>
 

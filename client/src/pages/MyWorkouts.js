@@ -20,15 +20,21 @@ function MyWorkouts() {
   };
 
   return (
-    <>
+    <div  className="mx-4 mt-3"> 
       {workoutArr.length ? (
         <FullCalendar
           plugins={[dayGridPlugin]}
           initialView="dayGridMonth"
           weekends={false}
           events={workoutArr}
-        />) : ''}
-    </>
+        />) : (
+          <FullCalendar
+          plugins={[dayGridPlugin]}
+          initialView="dayGridMonth"
+          weekends={false}
+        />
+        )}
+    </div>
   );
 };
 

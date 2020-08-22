@@ -9,7 +9,6 @@ import Header from './components/Header';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Detail from './pages/Detail';
-import ExerciseList from './components/ExerciseList';
 import Workout from './pages/Workout';
 import MyWorkouts from './pages/MyWorkouts';
 
@@ -39,7 +38,6 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
-              <Route exact path="/list" component={ExerciseList} />
               <Route exact path="/exercise/:id" component={Detail} />
               <Route exact path="/workout" component={Workout} />
               <Route exact path="/myworkouts" component={MyWorkouts} />

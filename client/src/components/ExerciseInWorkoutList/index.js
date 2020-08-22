@@ -7,7 +7,7 @@ function ExerciseInWorkoutList(props) {
     <div className="my-2">
       <div className="flex-row">
         {props.state.currentWorkout.exercises.map(exercise => (
-          <p><span style={{fontWeight: "bolder"}}>{exercise.name} -</span>
+          <p className="workout-text"><span style={{fontWeight: "bolder"}}>{exercise.name} -</span>
             {exercise.distance ? (<span > Distance: {exercise.distance}</span>) : ''}
             {exercise.time ? (<span> Time: {exercise.time}sec</span>) : ''}
             {exercise.reps ? (<span> Reps: {exercise.reps}</span>) : ''}

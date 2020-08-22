@@ -84,10 +84,10 @@ function IndividualRoutineExercise(props) {
 
   return (
         <>
-          <div className="container my-1">
+          <div className="my-3">
     
 
-            <h2>{name}</h2>
+            {/* <h2>{name}</h2> */}
 
             <p>
               {description}
@@ -98,14 +98,10 @@ function IndividualRoutineExercise(props) {
           </div>
 
           <div key="div-container-dates" className="single-exercise" onSubmit={handleSubmit}>
-
-            <div key="exercise" className="d-flex justify-content-center">
-              Exercise: {name}
-            </div>
-
             {trackTime ? (
-              <div key="div-container-timedata" className="d-flex justify-content-center"> Time (Seconds)
-                <input key="time" className='form-input'
+              <div key="div-container-timedata" className="d-flex input-area">
+                <div className="input-label">Time (Seconds)</div>
+                <input key="time" className='form-input input-field'
                   placeholder='Number of Minutes'
                   // onBlur= {handleChange}
                   name='time'
@@ -126,8 +122,9 @@ function IndividualRoutineExercise(props) {
             ) : null}
 
             {trackWeight ? (
-              <div key="div-container-weight" className="d-flex justify-content-center"> Weight (lbs)
-                <input key="weight" className='form-input'
+              <div key="div-container-weight" className="d-flex input-area"> 
+              <div className="input-label">Weight (lbs)</div>
+                <input key="weight" className='form-input input-field'
                   // onBlur= {handleChange}
                   placeholder='weight'
                   name='weight'
@@ -148,8 +145,9 @@ function IndividualRoutineExercise(props) {
             ) : null}
 
             {trackReps ? (
-              <div key="div-container-reps" className="d-flex justify-content-center"> Reps (Number)
-                <input key="reps" className='form-input'
+              <div key="div-container-reps" className="d-flex input-area">
+                <div className="input-label">Reps (Number)</div>
+                <input key="reps" className='form-input input-field'
                   // onBlur= {handleChange}
                   placeholder='reps'
                   name='reps'
@@ -170,8 +168,9 @@ function IndividualRoutineExercise(props) {
             ) : null}
 
             {trackDistance ? (
-              <div key="div-container-timedata" className="d-flex justify-content-center"> Distance (Miles)
-                <input key="time" className='form-input'
+              <div key="div-container-timedata" className="d-flex">
+                <div className="input-label">Distance (Miles)</div>
+                <input key="time" className='form-input input-field'
                   // onBlur= {handleChange}
                   placeholder='Number of Miles'
                   name='distance'
@@ -191,7 +190,7 @@ function IndividualRoutineExercise(props) {
               </div>
             ) : null}
 
-            <div key="div-container-button" className="d-flex justify-content-center">
+            <div key="div-container-button" className="d-flex input-area">
               <button onClick={() => {
                 // if (!errorMessage.length > 0) {
                   formFunction()
