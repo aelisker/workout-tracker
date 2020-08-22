@@ -29,6 +29,7 @@ mutation saveRoutine($input: [exerciseInput], $workoutId: ID) {
     _id
     workoutDate
     exercises {
+      _id
       name
       description
       videoLink

@@ -26,7 +26,7 @@ function IndividualRoutineExercise(props) {
   
   const [saveRoutine, { error }] = useMutation(SAVE_ROUTINE);
 
-  const [formState, setFormState] = useState({ name: name, _id:_id, description: description, videoLink: videoLink,
+  const [formState, setFormState] = useState({ name: name, description: description, videoLink: videoLink,
     trackDistance: trackDistance, trackTime: trackTime, trackWeight: trackWeight, trackReps: trackReps,
      time: 0, weight: 0, reps: 0, distance: 0, workoutId: null });
   const [workouts, setWorkouts] = useState([])
@@ -45,7 +45,7 @@ function IndividualRoutineExercise(props) {
         variables: {
           workoutId: state.currentWorkout._id, input: [
             {
-             _id:formState._id, name: formState.name, description: formState.description, videoLink: formState.videoLink,
+              name: formState.name, description: formState.description, videoLink: formState.videoLink,
               trackReps: formState.trackReps, trackWeight: formState.trackWeight,
               trackDistance: formState.trackDistance, trackTime: formState.trackTime,
               reps: Number(formState.reps), weight: Number(formState.weight),
@@ -53,6 +53,7 @@ function IndividualRoutineExercise(props) {
             }]
         }
       })
+      console.log('SUBMIT', submit);
       dispatch({
         type: UPDATE_CURRENT_WORKOUT,
         workout: submit.data.saveRoutine

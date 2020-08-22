@@ -42,8 +42,8 @@ function Workout() {
   };
 
   useEffect(() => {
-    console.log(exerciseState)
-  }, [exerciseState])
+    console.log('STATE from parent useEffect', state)
+  }, [exerciseState, state.currentWorkout])
 
   return (
     <div className="d-flex">
@@ -65,6 +65,7 @@ function Workout() {
         {exerciseState.name ? (
           <IndividualRoutineExercise
             key={exerciseState._id}
+            _id={exerciseState._id}
             name={exerciseState.name}
             description={exerciseState.description}
             videoLink={exerciseState.videoLink}
@@ -79,8 +80,9 @@ function Workout() {
       <div className="col-lg-4 col-7 mt-3 workout-output overflow-auto">
         {typeof state.currentWorkout.exercises !== 'undefined' ? (
           <ExerciseInWorkoutList
-            key={state._id}
-            state={state}
+            shouldComponentUpdate={true}
+            // key={state._id}
+            // state={state}
           />) : ''}
       </div>
     </div>

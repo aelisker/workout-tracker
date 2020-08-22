@@ -1,14 +1,14 @@
-import React from "react";
-import { useStoreContext } from '../../utils/GlobalState';
-import { UPDATE_CURRENT_WORKOUT } from '../../utils/actions';
+import React, { useEffect } from "react";
 import Auth from '../../utils/auth'
 import { REMOVE_EXERCISE } from '../../utils/mutations'
 import { useMutation } from '@apollo/react-hooks';
 
-function ExerciseInWorkoutList(props) {
-  console.log('PROPS', props.state.currentWorkout.exercises);
-  const [removeExercise, {error}] = useMutation(REMOVE_EXERCISE);
+import { useStoreContext } from '../../utils/GlobalState';
+import { REMOVE_FROM_CURRENT_WORKOUT } from '../../utils/actions';
+
+function ExerciseInWorkoutList() {
   const [state, dispatch] = useStoreContext();
+  const [removeExercise, {error}] = useMutation(REMOVE_EXERCISE);
   const handleDeleteExercise = async (exerciseId, workoutId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) {
@@ -16,28 +16,39 @@ function ExerciseInWorkoutList(props) {
     }
     try {
       await removeExercise({
-      variables: {exerciseId, workoutId }
+        variables: { exerciseId, workoutId }
+      });
+      dispatch({
+        type: REMOVE_FROM_CURRENT_WORKOUT,
+        _id: exerciseId
       });
     } catch (e) {
       console.error(e);
     }
   }
+
+  useEffect(() => {
+    console.log(`RERENDER: STATE IS`, state.currentWorkout );
+  }, [state.currentWorkout]);
+
   return (
     <div className="my-2">
       <div className="flex-row">
-        {props.state.currentWorkout.exercises.map(exercise => (
-          <p className="workout-text"><span style={{fontWeight: "bolder"}}>{exercise.name} -</span>
+        { state.currentWorkout.exercises.map(exercise => (
+          <p 
+            className="workout-text"
+            key={exercise._id}
+          >
+            <span style={{fontWeight: "bolder"}}>{exercise.name} -</span>
             {exercise.distance ? (<span > Distance: {exercise.distance}</span>) : ''}
             {exercise.time ? (<span> Time: {exercise.time}sec</span>) : ''}
             {exercise.reps ? (<span> Reps: {exercise.reps}</span>) : ''}
             {exercise.weight ? (<span> Weight: {exercise.weight}lbs</span>) : ''}
-            <button onClick={() => {
-              console.log("i am at delete button")
-              console.log(exercise)
-            handleDeleteExercise(exercise._id, props.state.currentWorkout._id)
-          }}>X</button>          
-          </p>
 
+            <button onClick={() => {
+              handleDeleteExercise(exercise._id, state.currentWorkout._id)
+            }}>X</button>          
+          </p>
         ))}
       </div>
     </div>
