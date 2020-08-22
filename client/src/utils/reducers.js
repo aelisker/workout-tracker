@@ -11,26 +11,18 @@ export const reducer = (state, action) => {
         currentWorkout: {...action.workout}
       };
     case REMOVE_FROM_CURRENT_WORKOUT:
-      console.log('STATE from REDUCER', state)
-      let newExerciseState = state.currentWorkout.exercises.filter(exercise => {
-        return exercise._id !== action._id;
-      });
-
-      return {
-        ...state,
-        currentWorkout: { exercises: newState }
+      let newExerciseState = {
+        ...state.currentWorkout,
+        exercises: state.currentWorkout.exercises.filter(exercise => {
+          return exercise._id !== action._id;
+        })
       }
 
-      // console.log('NEW STATE', newState)
+      let returnState = {
+        currentWorkout: newExerciseState
+      }
 
-      // let realNewState = {
-      //   ...state,
-      //   currentWorkout: { exercises: newState }
-      // };
-
-      // console.log("\n\n\n ---- NEW STATE: ");
-      // console.log(realNewState);
-      // return realNewState;
+      return returnState;    
     // if its none of these actions, do not update state at all 
     default: 
       return state;
