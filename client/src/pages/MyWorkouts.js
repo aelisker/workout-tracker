@@ -55,7 +55,7 @@ function MyWorkouts() {
   return (
     <>
     {show ? (
-    <Modal.Dialog>
+    <Modal show={show} onHide={handleClose}>
       {state.currentWorkout.exercises !== undefined ? (
         <>
       <Modal.Header closeButton>
@@ -85,7 +85,7 @@ function MyWorkouts() {
       </Modal.Footer>
       </>
       ) : ''} 
-    </Modal.Dialog>
+    </Modal>
     ) : ''}
     <div className="mx-4 mt-3">
       {workoutArr.length ? (
@@ -95,7 +95,6 @@ function MyWorkouts() {
           weekends={true}
           events={workoutArr}
           eventClick={function(info){
-            alert('Event:' + info.event.id);
             handleEventClick(info.event.id);
           }}
         />) : (
