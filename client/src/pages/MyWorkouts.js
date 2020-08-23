@@ -55,11 +55,11 @@ function MyWorkouts() {
   return (
     <>
     {show ? (
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={show} onHide={handleClose} centered>
       {state.currentWorkout.exercises !== undefined ? (
         <>
       <Modal.Header closeButton>
-        <Modal.Title>Modal title</Modal.Title>
+        <Modal.Title>Your Workout</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
