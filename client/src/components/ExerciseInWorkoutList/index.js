@@ -45,7 +45,7 @@ function ExerciseInWorkoutList() {
             {exercise.reps ? (<span> Reps: {exercise.reps}</span>) : ''}
             {exercise.weight ? (<span> Weight: {exercise.weight}lbs</span>) : ''}
 
-            <button onClick={() => {
+            <button className="float-right" onClick={() => {
               handleDeleteExercise(exercise._id, state.currentWorkout._id)
             }}>X</button>          
           </p>
