@@ -25,13 +25,13 @@ function MyWorkouts() {
         <FullCalendar
           plugins={[dayGridPlugin]}
           initialView="dayGridMonth"
-          weekends={false}
+          weekends={true}
           events={workoutArr}
         />) : (
           <FullCalendar
           plugins={[dayGridPlugin]}
           initialView="dayGridMonth"
-          weekends={false}
+          weekends={true}
         />
         )}
     </div>
