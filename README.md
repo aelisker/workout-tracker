@@ -18,7 +18,7 @@ You can find the fully deployed application [here](https://adj-workout-tracker.h
 ## License
 A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.
 
-To view the full license, [click here](./src/assets/repository-material/license/MIT.txt).
+To view the full license, [click here](./client/src/assets/repository-material/license/MIT.txt).
 
 ## Contributing
 Contributors for this project:

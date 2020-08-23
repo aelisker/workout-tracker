@@ -26,9 +26,6 @@ function IndividualExercise(exercise) {
             {description}
           </Card.Text>
         </Card.Body>
-        {/* <Card.Footer>
-          <small className="text-muted">{workoutCategory}</small>
-        </Card.Footer> */}
       </Card>
     </div>
   );
