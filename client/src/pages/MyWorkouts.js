@@ -4,17 +4,11 @@ import { QUERY_USER } from '../utils/queries';
 import { useStoreContext } from '../utils/GlobalState';
 import { UPDATE_CURRENT_WORKOUT } from '../utils/actions';
 import { Link } from "react-router-dom";
-import { ModalHeader2 } from "../utils/helpers"
-import FullCalendar, { elementClosest } from '@fullcalendar/react';
+import { AddCommasAndAnAnd } from "../utils/helpers"
+import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import ModalDialog from 'react-bootstrap/ModalDialog';
 import Modal from 'react-bootstrap/Modal'
-import ModalHeader from 'react-bootstrap/ModalHeader'
-import ModalTitle from 'react-bootstrap/ModalTitle'
-import ModalBody from 'react-bootstrap/ModalBody'
-import ModalFooter from 'react-bootstrap/ModalFooter'
 import Button from 'react-bootstrap/Button'
-//import interactionPlugin from "@fullcalendar/interaction";
 
 import moment from 'moment';
 
@@ -25,14 +19,11 @@ function MyWorkouts() {
 
   let workoutArr = [];
   if (user.workouts) {
-    workoutArr = user.workouts.map(workout =>
-      ({ title: workout._id, date: moment(workout.workoutDate).format("YYYY-MM-DD"), id: workout._id })
-      );
-    console.log(workoutArr);
-
+    workoutArr = user.workouts.map(workout => {
+      const nameArray = workout.exercises.map(exercise => (exercise.name));
+      return ({ title: AddCommasAndAnAnd(nameArray), date: moment(workout.workoutDate).format("YYYY-MM-DD"), id: workout._id })
+    })
   };
-
-
 
   useEffect(() => { }, [state]);
 
@@ -52,19 +43,6 @@ function MyWorkouts() {
     console.log(state);
   }
 
-let ModalArray = []
-let ModalArray3 = ""
-if(state){
-  console.log("i am at state")
-  console.log(state)
-}
-// state.currentWorkout.exercises.map(exercise => {
-// ModalArray.push(exercise.name)
-
-// })
-
-
-let test = ["Chinups", "Chinups", "Pullups", "Pullups", "Situps", "Situps"]
   return (
     <>
       <Modal 
@@ -76,14 +54,7 @@ let test = ["Chinups", "Chinups", "Pullups", "Pullups", "Situps", "Situps"]
         {state.currentWorkout.exercises !== undefined ? (
           <>
             <Modal.Header closeButton>
-           { console.log("i am at state2"),
-            console.log(state.currentWorkout.exercises),
-            state.currentWorkout.exercises.map(exercise => (
-              ModalArray.concat(exercise.name),
-              ModalArray3 = ModalHeader2(test)
-            ))
-            }
-              <Modal.Title>{ModalArray}</Modal.Title>
+              <Modal.Title>Your Workout</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>

@@ -93,6 +93,12 @@ a, a:hover, a:focus, a:active {
   z-index: 9999 !important;
 }
 
+/* FullCalendar event title wasn't wrapping, used this to fix https://stackoverflow.com/questions/13597136/fullcalendar-event-title-only-allowed-one-line */
+.fc-daygrid-block-event, 
+.fc-event-title {
+    white-space: normal !important;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
