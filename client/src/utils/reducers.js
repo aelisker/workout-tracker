@@ -6,10 +6,17 @@ export const reducer = (state, action) => {
   switch (action.type) {
     // if action type value if the value of X, return a new state object
     case UPDATE_CURRENT_WORKOUT:
-      return {
+      // return {
+      //   ...state,
+      //   currentWorkout: {...action.workout}
+      // };
+      const testExerciseState = {
         ...state,
         currentWorkout: {...action.workout}
       };
+      console.log('Reducer Return');
+      console.log(testExerciseState);
+      return testExerciseState;
     case REMOVE_FROM_CURRENT_WORKOUT:
       let newExerciseState = {
         ...state.currentWorkout,

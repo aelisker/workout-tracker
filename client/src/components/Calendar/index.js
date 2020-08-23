@@ -9,13 +9,8 @@ export default class DemoApp extends React.Component {
         <FullCalendar
           plugins={[ dayGridPlugin, interactionPlugin ]}
           initialView="dayGridMonth"
-          dateClick={this.handleDateClick}
         />
       )
-    }
-
-    handleDateClick = (props) => {
-
     }
   }
 

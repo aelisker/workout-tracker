@@ -11,6 +11,7 @@ import Signup from './pages/Signup';
 import Detail from './pages/Detail';
 import Workout from './pages/Workout';
 import MyWorkouts from './pages/MyWorkouts';
+import EditWorkout from './pages/EditWorkout';
 
 import { StoreProvider } from './utils/GlobalState';
 
@@ -41,6 +42,7 @@ function App() {
               <Route exact path="/exercise/:id" component={Detail} />
               <Route exact path="/workout" component={Workout} />
               <Route exact path="/myworkouts" component={MyWorkouts} />
+              <Route exact path="/edit/:id" component={EditWorkout} />
 
               <Route component={NoMatch} />
             </Switch>
