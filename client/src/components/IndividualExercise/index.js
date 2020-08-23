@@ -15,7 +15,7 @@ function IndividualExercise(exercise) {
 
   return (
 
-    <div className="col-6 col-lg-4 mb-3 align-items-stretch">
+    <div className="col-12 col-md-6 col-lg-4 mb-3 align-items-stretch">
       <Card>
         <Card.Body>
           <Link to={`/exercise/${_id}`}>

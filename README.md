@@ -5,15 +5,10 @@ This Workout Tracker application was designed for beginners to experts. Find exe
 
 ## Table of Contents
 * [Usage](#Usage)
-
 * [License](#License)
-
 * [Contributing](#contributing)
-
 * [Questions](#Questions)
-
 * [Create React App](#CRA)
-  
   
 ## Usage
 You can find the fully deployed application [here](https://adj-workout-tracker.herokuapp.com/).
@@ -26,7 +21,6 @@ A short and simple permissive license with conditions only requiring preservatio
 To view the full license, [click here](./src/assets/repository-material/license/MIT.txt).
 
 ## Contributing
-
 Contributors for this project:
 
 * [Aaron Lisker](https://github.com/aelisker)
