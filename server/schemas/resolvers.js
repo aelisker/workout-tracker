@@ -134,7 +134,54 @@ const resolvers = {
           { $pull: { workouts: {_id: args.workoutId}}},
         )
       }
-  }}
+  },
+      updateExercise: async (parent, args, context) => {
+        const workout  = await WorkoutRoutine.findByIdAndUpdate(
+          { _id: args.workoutId }, 
+          { $pull: { exercises:{_id: args.exerciseId }}},
+          { new: true }
+        );
+        await User.findByIdAndUpdate(
+          context.user._id ,
+          { $pull: { workouts: { _id: args.workoutId }}},
+        );
+        await User.findByIdAndUpdate(
+          context.user._id, 
+          { $addToSet: { workouts: workout }}, 
+          { new: true, upsert: true });
+
+          if (context.user) {
+            const isWorkout = await WorkoutRoutine.findById(args.workoutId);
+            // if workout exists, update workout
+            if (isWorkout !== null) {
+              const workout  = await WorkoutRoutine.findByIdAndUpdate(
+                { _id: args.workoutId }, 
+                { $addToSet: { exercises: args.input }},
+                { new: true, upsert: true }
+              );
+              // update was creating duplicates. instead, pull existing workout with matching ID
+              await User.findByIdAndUpdate(
+                context.user._id,
+                { $pull: { workouts: { _id: args.workoutId }}},
+                // { new: true }
+              );
+              // add updated routine to user workout array
+              await User.findByIdAndUpdate(context.user._id, { $addToSet: { workouts: workout }}, { new: true, upsert: true });
+              return workout;
+    
+              // if no workout routine with queried ID, create new one
+            } else if (isWorkout === null) {
+              const workout  = await WorkoutRoutine.create(
+                { exercises: args.input }
+              );
+              await User.findByIdAndUpdate(context.user._id, { $addToSet: { workouts: workout }}, {new: true});
+              return workout;
+            }
+          } throw new AuthenticationError('Not logged in');
+
+      }
+
+}
 };
 
 module.exports = resolvers;

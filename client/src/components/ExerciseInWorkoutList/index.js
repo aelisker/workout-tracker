@@ -2,13 +2,25 @@ import React, { useEffect } from "react";
 import Auth from '../../utils/auth'
 import { REMOVE_EXERCISE } from '../../utils/mutations'
 import { useMutation } from '@apollo/react-hooks';
-
+import { useHistory } from "react-router-dom";
 import { useStoreContext } from '../../utils/GlobalState';
 import { REMOVE_FROM_CURRENT_WORKOUT } from '../../utils/actions';
+import { Link } from "react-router-dom";
+import Button from 'react-bootstrap/Button'
 
-function ExerciseInWorkoutList() {
+function ExerciseInWorkoutList(props) {
   const [state, dispatch] = useStoreContext();
   const [removeExercise, {error}] = useMutation(REMOVE_EXERCISE);
+
+  const handleModifyExercise = async (exerciseId, workoutId, exerciseName) => {
+    state.currentId = exerciseId
+    console.log(" i amm at exercise id")
+    console.log(exerciseId)
+    props.shouldComponentUpdate({id: exerciseId,shouldComponentUpdate:!props.currentWorkout, name: exerciseName  })
+
+  
+  }
+
   const handleDeleteExercise = async (exerciseId, workoutId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) {
@@ -45,9 +57,19 @@ function ExerciseInWorkoutList() {
             {exercise.reps ? (<span> Reps: {exercise.reps}</span>) : ''}
             {exercise.weight ? (<span> Weight: {exercise.weight}lbs</span>) : ''}
 
-            <button className="float-right" onClick={() => {
+ 
+            <div className="row">
+             <Link to={`/edit-workout`}>
+             <Button className="form-inline"  onClick={() => {
+              handleModifyExercise(exercise._id, state.currentWorkout._id, exercise.name)
+             
+            }}    >Update</Button> 
+              </Link>
+
+            <button className="form-inline" onClick={() => {
               handleDeleteExercise(exercise._id, state.currentWorkout._id)
-            }}>X</button>          
+            }}>X</button>       
+            </div>
           </p>
         ))}
       </div>

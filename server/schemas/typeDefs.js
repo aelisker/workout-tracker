@@ -86,6 +86,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     saveRoutine(input: [exerciseInput], workoutId: ID): WorkoutRoutine
     removeExercise (exerciseId: ID!, workoutId: ID!): User
+    updateExercise (exerciseId: ID!, workoutId: ID!, input: exerciseInput): User
   }
 `;
 

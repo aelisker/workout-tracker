@@ -18,18 +18,16 @@ import Button from 'react-bootstrap/Button'
 import { useStoreContext } from '../utils/GlobalState';
 import { UPDATE_CURRENT_WORKOUT } from '../utils/actions';
 
-function Workout() {
+function EditWorkout() {
   const [state, dispatch] = useStoreContext();
   const { loading, data } = useQuery(QUERY_ALL_EXERCISES);
   const exercises = data?.exercises || [];
   const [button, setButton] = useState('Select an Exercise');
-  const [exerciseState, setExerciseState] = useState({shouldComponentUpdate: false, id: '', name: ''
+  const [exerciseState, setExerciseState] = useState({
     // _id: '', name: '', description: '', videoLink: '',
     // trackDistance: '', trackTime: '', trackWeight: '', trackReps: '', workoutId: ''
   });
-  console.log(' i am at exercise state')
-  console.log(exerciseState)
-  const [currentExercise, setCurrentExercise] = useState({shouldComponentUpdate: false, id: '', name: ''})
+
   const addExercise = async (exerciseName) => {
     setButton(exerciseName);
     const indEx = await exercises.filter(exercise => exercise.name === exerciseName);
@@ -42,54 +40,17 @@ function Workout() {
     console.log(indEx[0]);
     // console.log(exerciseState);
   };
-
+  console.log("i am on edit page")
+  console.log([state.currentWorkout])
   useEffect(() => {
-    console.log('STATE from parent useEffect', state)
+    console.log('STATE from parent useEffect edit page', state)
   }, [exerciseState, state.currentWorkout])
 
   return (
     <div className="d-flex">
-      <div className="col-5 workout-input">
-        {typeof state.currentWorkout.exercises === 'undefined' ?
-          (<h1>Add a Workout?</h1>) :
-          (<h1>Current Workout</h1>)}
-        <div>
-          <DropdownButton title={button} onSelect={function (evt) {
-            // setButton(evt)
-            addExercise(evt)
-          }}>
-            {exercises.map(exercise => (
-              <MenuItem key={exercise._id} eventKey={exercise.name}>{exercise.name}</MenuItem>
-            ))}
-          </DropdownButton>
-        </div>
-
-        {exerciseState.name ? (
-          <IndividualRoutineExercise
-            key={exerciseState._id}
-            _id={exerciseState._id}
-            name={exerciseState.name}
-            description={exerciseState.description}
-            videoLink={exerciseState.videoLink}
-            trackReps={exerciseState.trackReps}
-            trackWeight={exerciseState.trackWeight}
-            trackDistance={exerciseState.trackDistance}
-            trackTime={exerciseState.trackTime}
-          />
-        ) : ''}
-      </div>
-      <div className="col-lg-3"></div>
-      <div className="col-lg-4 col-7 mt-3 workout-output overflow-auto">
-        {typeof state.currentWorkout.exercises !== 'undefined' ? (
-          <ExerciseInWorkoutList
-            shouldComponentUpdate={setExerciseState}
-            exerciseState={exerciseState}
-            // key={state._id}
-            // state={state}
-          />) : ''}
-      </div>
+    edit workout page
     </div>
   )
 }
 
-export default Workout;
+export default EditWorkout;

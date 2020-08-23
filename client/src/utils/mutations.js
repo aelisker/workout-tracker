@@ -65,3 +65,29 @@ mutation removeExercise($exerciseId: ID!, $workoutId: ID!) {
   }
 }
 `;
+
+export const UPDATE_EXERCISE = gql`
+mutation updateExercise($exerciseId: ID!, $workoutId: ID!, $input: exerciseInput ) {
+  updateExercise(exerciseId: $exerciseId, workoutId:$workoutId, input: $input ) {
+      _id   
+        workouts{
+        _id
+            exercises {
+              _id
+              name
+              description
+              videoLink
+              trackReps
+              trackTime
+              trackWeight
+              trackDistance
+              reps
+              weight
+              distance
+              time
+
+        }
+      }
+  } 
+}
+`;

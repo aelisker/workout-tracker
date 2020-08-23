@@ -30,7 +30,8 @@ function IndividualRoutineExercise(props) {
     trackDistance: trackDistance, trackTime: trackTime, trackWeight: trackWeight, trackReps: trackReps,
      time: 0, weight: 0, reps: 0, distance: 0, workoutId: null });
   const [workouts, setWorkouts] = useState([])
-
+  console.log("i am at indiv rout exer")
+  console.log(state.exerciseId)
   useEffect(() => {
     // setCurrentExercise(props);
     // setFormState({ ...formState, props })
