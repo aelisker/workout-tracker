@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import Auth from '../../utils/auth'
 import { REMOVE_EXERCISE } from '../../utils/mutations'
 import { useMutation } from '@apollo/react-hooks';
-
 import { useStoreContext } from '../../utils/GlobalState';
 import { REMOVE_FROM_CURRENT_WORKOUT } from '../../utils/actions';
+import Button from 'react-bootstrap/Button';
 
 function ExerciseInWorkoutList() {
   const [state, dispatch] = useStoreContext();
@@ -45,9 +45,13 @@ function ExerciseInWorkoutList() {
             {exercise.reps ? (<span> Reps: {exercise.reps}</span>) : ''}
             {exercise.weight ? (<span> Weight: {exercise.weight}lbs</span>) : ''}
 
-            <button className="float-right" onClick={() => {
-              handleDeleteExercise(exercise._id, state.currentWorkout._id)
-            }}>X</button>          
+            <Button 
+              variant="danger"
+              className="float-right" 
+              onClick={() => {
+                handleDeleteExercise(exercise._id, state.currentWorkout._id)
+              }}
+            >X</Button>       
           </p>
         ))}
       </div>

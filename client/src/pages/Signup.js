@@ -41,7 +41,7 @@ const Signup = () => {
           <div className='card-body'>
             <form onSubmit={handleFormSubmit}>
               <input
-                className='form-input'
+                className='form-input col-12-sm mb-1'
                 placeholder='Your username'
                 name='username'
                 type='username'
@@ -50,7 +50,7 @@ const Signup = () => {
                 onChange={handleChange}
               />
               <input
-                className='form-input'
+                className='form-input col-12-sm mb-1'
                 placeholder='Your email'
                 name='email'
                 type='email'
@@ -59,7 +59,7 @@ const Signup = () => {
                 onChange={handleChange}
               />
               <input
-                className='form-input'
+                className='form-input col-12-sm'
                 placeholder='******'
                 name='password'
                 type='password'

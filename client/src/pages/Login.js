@@ -17,20 +17,19 @@ const Login = (props) => {
   };
 
   // submit form
-// submit form
-const handleFormSubmit = async event => {
-  event.preventDefault();
+  const handleFormSubmit = async event => {
+    event.preventDefault();
 
-  try {
-    const { data } = await login({
-      variables: { ...formState }
-    });
-  
-    Auth.login(data.login.token);
-  } catch (e) {
-    console.error(e);
-  }
-};
+    try {
+      const { data } = await login({
+        variables: { ...formState }
+      });
+    
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   return (
     <main className='flex-row justify-center mb-4 d-flex justify-content-center'>
@@ -40,7 +39,7 @@ const handleFormSubmit = async event => {
           <div className='card-body'>
             <form onSubmit={handleFormSubmit}>
               <input
-                className='form-input'
+                className='form-input mb-1'
                 placeholder='Your email'
                 name='email'
                 type='email'
