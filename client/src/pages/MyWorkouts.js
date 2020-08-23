@@ -22,7 +22,6 @@ function MyWorkouts() {
   const { loading, data } = useQuery(QUERY_USER);
   const [state, dispatch] = useStoreContext();
   const user = data?.user || [];
-  console.log(user);
 
   let workoutArr = [];
   if (user.workouts) {
@@ -31,81 +30,81 @@ function MyWorkouts() {
     console.log(workoutArr);
   };
 
-  useEffect(()=>{},[state])
+  useEffect(() => { }, [state]);
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   async function handleEventClick(id) {
     handleShow();
-    const test = user.workouts.filter(workout => {
+    const returnedWorkout = user.workouts.filter(workout => {
       return workout._id === id;
     });
     await dispatch({
       type: UPDATE_CURRENT_WORKOUT,
-      workout: test[0]
+      workout: returnedWorkout[0]
     })
     console.log(state);
   }
 
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  
-
-
   return (
     <>
-    {show ? (
-    <Modal.Dialog>
-      {state.currentWorkout.exercises !== undefined ? (
-        <>
-      <Modal.Header closeButton>
-        <Modal.Title>Modal title</Modal.Title>
-      </Modal.Header>
+      <Modal 
+        show={show} 
+        onHide={handleClose} 
+        centered
+        className="workout-modal"
+      >
+        {state.currentWorkout.exercises !== undefined ? (
+          <>
+            <Modal.Header closeButton>
+              <Modal.Title>Modal title</Modal.Title>
+            </Modal.Header>
 
-      <Modal.Body>
-        { state.currentWorkout.exercises.map(exercise => (
-          <p 
-            className="workout-text"
-            key={exercise._id}
-          >
-            <span style={{fontWeight: "bolder"}}>{exercise.name} -</span>
-            {exercise.distance ? (<span > Distance: {exercise.distance}</span>) : ''}
-            {exercise.time ? (<span> Time: {exercise.time}sec</span>) : ''}
-            {exercise.reps ? (<span> Reps: {exercise.reps}</span>) : ''}
-            {exercise.weight ? (<span> Weight: {exercise.weight}lbs</span>) : ''}         
-          </p>
-        ))}
-      </Modal.Body>
+            <Modal.Body>
+              {state.currentWorkout.exercises.map(exercise => (
+                <p
+                  className="workout-text"
+                  key={exercise._id}
+                >
+                  <span style={{ fontWeight: "bolder" }}>{exercise.name} -</span>
+                  {exercise.distance ? (<span > Distance: {exercise.distance}</span>) : ''}
+                  {exercise.time ? (<span> Time: {exercise.time}sec</span>) : ''}
+                  {exercise.reps ? (<span> Reps: {exercise.reps}</span>) : ''}
+                  {exercise.weight ? (<span> Weight: {exercise.weight}lbs</span>) : ''}
+                </p>
+              ))}
+            </Modal.Body>
 
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>Close</Button>
-        <Link to={`/edit/${state.currentWorkout._id}`}>
-          <Button variant="primary">Update Workout</Button>
-        </Link>
-      </Modal.Footer>
-      </>
-      ) : ''} 
-    </Modal.Dialog>
-    ) : ''}
-    <div className="mx-4 mt-3">
-      {workoutArr.length ? (
-        <FullCalendar
-          plugins={[dayGridPlugin]}
-          initialView="dayGridMonth"
-          weekends={true}
-          events={workoutArr}
-          eventClick={function(info){
-            alert('Event:' + info.event.id);
-            handleEventClick(info.event.id);
-          }}
-        />) : (
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>Close</Button>
+              <Link to={`/workout/`}>
+                <Button variant="primary">Update Workout</Button>
+              </Link>
+            </Modal.Footer>
+          </>
+        ) : ''}
+      </Modal>
+
+      <div className="mx-4 mt-3">
+        {workoutArr.length ? (
           <FullCalendar
             plugins={[dayGridPlugin]}
             initialView="dayGridMonth"
-            weekends={false}
-          />
-        )}
-    </div>
+            weekends={true}
+            events={workoutArr}
+            eventClick={function (info) {
+              handleEventClick(info.event.id);
+            }}
+          />) : (
+            <FullCalendar
+              plugins={[dayGridPlugin]}
+              initialView="dayGridMonth"
+              weekends={false}
+            />
+          )}
+      </div>
     </>
   );
 

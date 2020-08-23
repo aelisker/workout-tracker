@@ -36,7 +36,7 @@ a.d-flex.title:hover {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 9999;
+  z-index: 99;
   background: rgb(214,31,192);
   background: linear-gradient(90deg, rgba(214,31,192,1) 2%, rgba(133,35,213,1) 33%, rgba(36,73,218,1) 74%, rgba(12,159,214,1) 100%);
   background-size: 4000px 4000px;
@@ -87,6 +87,10 @@ a, a:hover, a:focus, a:active {
 
 .workout-text {
   size: 30px;
+}
+
+.workout-modal {
+  z-index: 9999 !important;
 }
 
 @media (prefers-reduced-motion: no-preference) {
