@@ -34,7 +34,7 @@ function ExerciseList() {
           </CardDeck>
           
       ) : (
-        <h3>No exercises found. Has the DB been seeded?</h3>
+        <h3>No exercises found. There may be a problem with the connection to Mongo Atlas DB.</h3>
       )}
       </div>
       { loading ? 

@@ -96,7 +96,7 @@ function MyWorkouts() {
             <FullCalendar
               plugins={[dayGridPlugin]}
               initialView="dayGridMonth"
-              weekends={false}
+              weekends={true}
             />
           )}
       </div>
