@@ -1,3 +1,4 @@
+// go through an array to add commas between string, and before final word removing duplicates throughout
 export function AddCommasAndAnAnd(arr) {
     let newArr = []
     for (let i = 0; i < arr.length; i++) {

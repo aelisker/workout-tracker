@@ -38,47 +38,44 @@ const resolvers = {
       return await IndividualExercise.find({}).populate('workoutCategory');
     },
 
-    exercise: async (parent, {_id}) => {
+    exercise: async (parent, { _id }) => {
       return await IndividualExercise.findById(_id).populate('workoutCategory');
     }
   },
 
   Mutation: {
     saveRoutine: async (parent, args, context) => {
-      console.log('USER CONTEXT', context.user);
-      console.log('ARGS', args);
+      // ensure user is logged in
       if (context.user) {
         const isWorkout = await WorkoutRoutine.findById(args.workoutId);
         // if workout exists, update workout
         if (isWorkout !== null) {
-          const workout  = await WorkoutRoutine.findByIdAndUpdate(
-            { _id: args.workoutId }, 
-            { $addToSet: { exercises: args.input }},
+          const workout = await WorkoutRoutine.findByIdAndUpdate(
+            { _id: args.workoutId },
+            { $addToSet: { exercises: args.input } },
             { new: true, upsert: true }
           );
           // update was creating duplicates. instead, pull existing workout with matching ID
           await User.findByIdAndUpdate(
             context.user._id,
-            { $pull: { workouts: { _id: args.workoutId }}},
-            // { new: true }
+            { $pull: { workouts: { _id: args.workoutId } } }
           );
           // add updated routine to user workout array
-          await User.findByIdAndUpdate(context.user._id, { $addToSet: { workouts: workout }}, { new: true, upsert: true });
+          await User.findByIdAndUpdate(context.user._id, { $addToSet: { workouts: workout } }, { new: true, upsert: true });
           return workout;
 
           // if no workout routine with queried ID, create new one
         } else if (isWorkout === null) {
-          const workout  = await WorkoutRoutine.create(
+          const workout = await WorkoutRoutine.create(
             { exercises: args.input }
           );
-          await User.findByIdAndUpdate(context.user._id, { $addToSet: { workouts: workout }}, {new: true});
+          await User.findByIdAndUpdate(context.user._id, { $addToSet: { workouts: workout } }, { new: true });
           return workout;
         }
       } throw new AuthenticationError('Not logged in');
     },
 
     addUser: async (parent, args) => {
-      console.log('ARGS', args)
       const user = await User.create(args);
       const token = signToken(user);
 
@@ -103,38 +100,30 @@ const resolvers = {
       return { token, user };
     },
     removeExercise: async (parent, args, context) => {
-      console.log("i am at line 61")
+      const workout = await WorkoutRoutine.findByIdAndUpdate(
+        { _id: args.workoutId },
+        { $pull: { exercises: { _id: args.exerciseId } } },
+        { new: true }
+      );
 
+      await User.findByIdAndUpdate(
+        context.user._id,
+        { $pull: { workouts: { _id: args.workoutId } } },
+      );
 
-    const workout  = await WorkoutRoutine.findByIdAndUpdate(
-      { _id: args.workoutId }, 
-      { $pull: { exercises:{_id: args.exerciseId }}},
-      { new: true }
-    );
-    console.log("i am at workout")
-    console.log(workout)
-    await User.findByIdAndUpdate(
-            context.user._id ,
-            { $pull: { workouts: { _id: args.workoutId }}},
-          );
-    await User.findByIdAndUpdate(
-      context.user._id, 
-      { $addToSet: { workouts: workout }}, 
-      { new: true, upsert: true });
-    console.log("i am at exercise length")
-    console.log(workout.exercises) 
-    if(workout.exercises.length == 0) {
-      // const workout2 =  await WorkoutRoutine.findByIdAndDelete(
-      //     {_id: context.user._id},
-      //     {workouts:{_id: args.workoutId}},
-      //   );
-      console.log("i am at empty exercise")
+      await User.findByIdAndUpdate(
+        context.user._id,
+        { $addToSet: { workouts: workout } },
+        { new: true, upsert: true });
+
+      if (workout.exercises.length == 0) {
         await User.findByIdAndUpdate(
-          {_id: context.user._id},
-          { $pull: { workouts: {_id: args.workoutId}}},
+          { _id: context.user._id },
+          { $pull: { workouts: { _id: args.workoutId } } },
         )
       }
-  }}
+    }
+  }
 };
 
 module.exports = resolvers;

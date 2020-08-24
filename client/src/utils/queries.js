@@ -1,27 +1,27 @@
 import gql from 'graphql-tag';
 
 export const QUERY_USER = gql`
-{
-  user {
-    _id
-    username
-    email
-    workouts {
+  {
+    user {
       _id
-      workoutDate
-      exercises {
+      username
+      email
+      workouts {
         _id
-        name
-        description
-        videoLink
-        reps
-        weight
-        distance
-        time
+        workoutDate
+        exercises {
+          _id
+          name
+          description
+          videoLink
+          reps
+          weight
+          distance
+          time
+        }
       }
     }
   }
-}
 `;
 
 export const QUERY_EXERCISE = gql`

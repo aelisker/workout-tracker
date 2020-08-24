@@ -6,8 +6,7 @@ const { Provider } = StoreContext;
 
 const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useWorkoutReducer({
-    currentWorkout: [],
-    // individualExercise: []
+    currentWorkout: []
   });
   // use to confirm it works
   console.log(state);

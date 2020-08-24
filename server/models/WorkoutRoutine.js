@@ -52,16 +52,10 @@ const routineExerciseSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'WorkoutCategory'
   }
-  // individExercise: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'IndividualExercise'
-  // }
 });
 
 const workoutRoutineSchema = new Schema({
   workoutDate: {
-    // type: String,
-    // default: moment(Date.now()).format("MMM Do YY"),
     type: Date,
     default: Date.now(),
     required: true
@@ -70,6 +64,5 @@ const workoutRoutineSchema = new Schema({
 });
 
 const WorkoutRoutine = mongoose.model('WorkoutRoutine', workoutRoutineSchema);
-// const WorkoutRoutine = mongoose.model('WorkoutRoutine', workoutRoutineSchema);
 
 module.exports = WorkoutRoutine;

@@ -18,7 +18,6 @@ db.once('open', async () => {
 
   await IndividualExercise.deleteMany();
 
-  // const individualExercise = await IndividualExercise.insertMany([
   await IndividualExercise.insertMany([
     {
       name: 'Bench Press',
@@ -133,7 +132,7 @@ db.once('open', async () => {
 
   await User.deleteMany();
 
-  console.log('users seeded');
+  console.log('users deleted');
 
   await WorkoutRoutine.deleteMany();
 

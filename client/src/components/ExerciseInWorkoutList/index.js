@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 
 function ExerciseInWorkoutList() {
   const [state, dispatch] = useStoreContext();
-  const [removeExercise, {error}] = useMutation(REMOVE_EXERCISE);
+  const [removeExercise, { error }] = useMutation(REMOVE_EXERCISE);
   const handleDeleteExercise = async (exerciseId, workoutId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) {
@@ -28,35 +28,35 @@ function ExerciseInWorkoutList() {
   }
 
   useEffect(() => {
-    console.log(`RERENDER: STATE IS`, state.currentWorkout );
+    console.log(`RERENDER: STATE IS`, state.currentWorkout);
   }, [state.currentWorkout]);
 
   return (
     <div className="my-2">
       <div className="flex-row">
-        { state.currentWorkout.exercises.map(exercise => (
-          <p 
+        {state.currentWorkout.exercises.map(exercise => (
+          <p
             className="workout-text"
             key={exercise._id}
           >
-            <span style={{fontWeight: "bolder"}}>{exercise.name} -</span>
+            <span style={{ fontWeight: "bolder" }}>{exercise.name} -</span>
             {exercise.distance ? (<span > Distance: {exercise.distance}</span>) : ''}
             {exercise.time ? (<span> Time: {exercise.time}sec</span>) : ''}
             {exercise.reps ? (<span> Reps: {exercise.reps}</span>) : ''}
             {exercise.weight ? (<span> Weight: {exercise.weight}lbs</span>) : ''}
 
-            <Button 
+            <Button
               variant="danger"
-              className="float-right" 
+              className="float-right"
               onClick={() => {
                 handleDeleteExercise(exercise._id, state.currentWorkout._id)
               }}
-            >X</Button>       
+            >X</Button>
           </p>
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default ExerciseInWorkoutList;

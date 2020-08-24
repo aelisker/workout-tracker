@@ -9,7 +9,6 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
-
 import moment from 'moment';
 
 function MyWorkouts() {
@@ -17,6 +16,7 @@ function MyWorkouts() {
   const [state, dispatch] = useStoreContext();
   const user = data?.user || [];
 
+  // setup array of events for FullCalendar
   let workoutArr = [];
   if (user.workouts) {
     workoutArr = user.workouts.map(workout => {
@@ -27,20 +27,25 @@ function MyWorkouts() {
 
   useEffect(() => { }, [state]);
 
+  // modal controls
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   async function handleEventClick(id) {
+    // show modal
     handleShow();
+
+    // take id from click event, find matching workout object
     const returnedWorkout = user.workouts.filter(workout => {
       return workout._id === id;
     });
+
+    // update state with selected workout as current workout
     await dispatch({
       type: UPDATE_CURRENT_WORKOUT,
       workout: returnedWorkout[0]
     })
-    console.log(state);
   }
 
   return (
@@ -51,6 +56,7 @@ function MyWorkouts() {
         centered
         className="workout-modal"
       >
+        {/* need to ensure exercises array is populated before trying to bring up modal */}
         {state.currentWorkout.exercises !== undefined ? (
           <>
             <Modal.Header closeButton>
@@ -96,13 +102,12 @@ function MyWorkouts() {
             <FullCalendar
               plugins={[dayGridPlugin]}
               initialView="dayGridMonth"
-              weekends={false}
+              weekends={true}
             />
           )}
       </div>
     </>
   );
-
 };
 
 export default MyWorkouts;

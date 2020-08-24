@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 
 import { QUERY_EXERCISE } from '../utils/queries';
 import spinner from '../assets/spinner.gif'
-
 
 function Detail() {
   const { id } = useParams();
@@ -18,17 +17,11 @@ function Detail() {
       {exercise ? (
         <div className="container justify-content-center">
           <div className="justify-content-center my-1">
-            {/* <Link 
-              to="/list"
-              className="my-3">
-              ← Back to Exercise List
-            </Link> */}
-
             <h2 className="mt-3">
               {exercise.name} - 
               <small className="mb-3">
-              {' '}{exercise.workoutCategory ? exercise.workoutCategory.name : null}
-            </small>
+                {' '}{exercise.workoutCategory ? exercise.workoutCategory.name : null}
+              </small>
             </h2>
 
             <p className="mt-3">
@@ -43,15 +36,12 @@ function Detail() {
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
               allowfullscreen>
             </iframe>
-
           </div>
         </div>
-
       ) : null}
       {
         loading ? <img src={spinner} alt="loading" /> : null
       }
-  
     </>
   );
 }

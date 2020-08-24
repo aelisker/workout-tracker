@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { SAVE_ROUTINE } from '../../utils/mutations';
-
 import { useStoreContext } from '../../utils/GlobalState';
 import { UPDATE_CURRENT_WORKOUT } from '../../utils/actions';
 
@@ -33,14 +32,12 @@ function IndividualRoutineExercise(props) {
   });
   const [workouts, setWorkouts] = useState([])
 
-  useEffect(() => {
-    console.log('STATE', state);
-  }, [props]);
-
+  useEffect(() => { }, [props]);
 
   const saveTheRoutine = async event => {
     // event.preventDefault();
     try {
+      // call saveRoutine mutation, which either creates new workout or updates existing routine if _id finds match
       const submit = await saveRoutine({
         variables: {
           workoutId: state.currentWorkout._id, input: [
@@ -52,12 +49,15 @@ function IndividualRoutineExercise(props) {
               distance: Number(formState.distance), time: Number(formState.time)
             }]
         }
-      })
-      console.log('SUBMIT', submit);
+      });
+
+      // await return of workout from mutation and set as current workout in global state
       dispatch({
         type: UPDATE_CURRENT_WORKOUT,
         workout: submit.data.saveRoutine
-      })
+      });
+
+      // update workout id in formstate for updates
       setFormState({
         ...formState,
         workoutId: state._id
@@ -91,6 +91,7 @@ function IndividualRoutineExercise(props) {
             <input key="time" className='form-input input-field'
               placeholder='Number of Minutes'
               name='time'
+              // eliminates leading zeroes when typing
               value={Number(formState.time).toString()}
               type='number'
               id='time'

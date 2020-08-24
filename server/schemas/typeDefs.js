@@ -22,7 +22,6 @@ const typeDefs = gql`
     trackDistance: Boolean
     time: Float
     trackTime: Boolean
-    # workoutCategory: String
   }
 
   type IndividualExercise {
@@ -56,7 +55,6 @@ const typeDefs = gql`
 
   type WorkoutRoutine {
     _id: ID
-    # need to figure out how to add Date as type
     workoutDate: Date
     exercises: [RoutineExercise]
   }

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import Card from 'react-bootstrap/Card';
 
 function IndividualExercise(exercise) {
@@ -29,6 +28,6 @@ function IndividualExercise(exercise) {
       </Card>
     </div>
   );
-}
+};
 
 export default IndividualExercise;

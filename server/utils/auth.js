@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-// const secret = 'mysecretsshhhhh';
+// use .env file. Can set to string if testing locally but make sure to change back
 let secret = process.env.SERVER_SECRET;
 const expiration = '4h';
 
