@@ -8,8 +8,8 @@ import MenuItem from 'react-bootstrap/DropdownItem'
 import { useStoreContext } from '../utils/GlobalState';
 
 function Workout() {
-  const [state, dispatch] = useStoreContext();
-  const { loading, data } = useQuery(QUERY_ALL_EXERCISES);
+  const [state] = useStoreContext();
+  const {  data } = useQuery(QUERY_ALL_EXERCISES);
   const exercises = data?.exercises || [];
   const [button, setButton] = useState('Select an Exercise');
   const [exerciseState, setExerciseState] = useState({});

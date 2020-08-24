@@ -7,8 +7,6 @@ function IndividualExercise(exercise) {
     _id,
     name,
     description,
-    videoLink,
-    workoutCategory,
     imageName
   } = exercise;
 

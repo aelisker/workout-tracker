@@ -2,7 +2,8 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 // use .env file. Can set to string if testing locally but make sure to change back
-let secret = process.env.SERVER_SECRET;
+// let secret = process.env.SERVER_SECRET;
+const secret = 'mysecretsshhhhh';
 const expiration = '4h';
 
 module.exports = {

@@ -6,24 +6,18 @@ import { UPDATE_CURRENT_WORKOUT } from '../../utils/actions';
 
 function IndividualRoutineExercise(props) {
   const {
-    _id,
     name,
     description,
     videoLink,
     trackDistance,
-    distance,
     trackTime,
-    time,
     trackReps,
-    reps,
     trackWeight,
-    weight,
-    workoutId
   } = props;
 
   const [state, dispatch] = useStoreContext();
 
-  const [saveRoutine, { error }] = useMutation(SAVE_ROUTINE);
+  const [saveRoutine,] = useMutation(SAVE_ROUTINE);
 
   const [formState, setFormState] = useState({
     name: name, description: description, videoLink: videoLink,

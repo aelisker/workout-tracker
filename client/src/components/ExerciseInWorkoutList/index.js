@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 
 function ExerciseInWorkoutList() {
   const [state, dispatch] = useStoreContext();
-  const [removeExercise, { error }] = useMutation(REMOVE_EXERCISE);
+  const [removeExercise] = useMutation(REMOVE_EXERCISE);
   const handleDeleteExercise = async (exerciseId, workoutId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) {

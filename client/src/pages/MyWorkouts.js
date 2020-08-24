@@ -12,7 +12,7 @@ import Button from 'react-bootstrap/Button'
 import moment from 'moment';
 
 function MyWorkouts() {
-  const { loading, data } = useQuery(QUERY_USER);
+  const {  data } = useQuery(QUERY_USER);
   const [state, dispatch] = useStoreContext();
   const user = data?.user || [];
 
